@@ -1,0 +1,143 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> MEN CRUD Basics </title>
+</head>
+
+  <body>
+    <span style='margin-right: 95px;'> Name </span><span> Quote </span>
+    <form action="/quotes/form" method="POST" style="margin-bottom: 20px;">
+      <input style='margin-right: 5px;' type="text" name="name">
+      <input class="quote" type="text" name="quote">
+      <button type="submit"> Create/post </button> html '< form >' post
+    </form>
+    <div id='db'></div>
+    <br>
+    <span style='margin-right: 95px;'> Name </span><span> Quote </span>
+    <div style="margin-bottom: 20px;">
+      <input id='nameInput' style='margin-right: 5px;'>
+      <input id='quoteInput' class="quote">
+      <button onclick="post()"> Create/post </button>  JS onClick() post
+    </div>
+
+  </body>
+
+  <script type="text/javascript">
+
+    var quotes
+    var loc = '/quotes'
+    onDOMContentLoaded = (()=>{ get() })()
+
+    function get(){
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', loc, true)
+      xhr.onload = ()=>{
+        if (xhr.status >= 200 && xhr.status < 400) {
+          quotes = JSON.parse(xhr.responseText)
+          render(quotes)
+        } else { console.log('server error...') }
+      }
+      xhr.onerror = () => { console.log('request error') }
+      xhr.send()
+    }
+
+    function post(){
+      console.log('POST', nameInput.value, quoteInput.value)
+      const newObj = {
+          name: nameInput.value,
+          quote: quoteInput.value
+      }
+      const xhr = new XMLHttpRequest()
+      xhr.open('POST', loc, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onload = ()=>{
+        if (xhr.status === 200) {
+          update('post', JSON.parse(xhr.responseText))
+        } else { console.log('server error...') }
+      }
+      xhr.onerror = () => { console.log('request error') }
+      xhr.send(JSON.stringify(newObj))
+    }
+
+    function put(ind){
+      const newQ = document.getElementsByClassName(quotes[ind]._id)
+      const newObj = {
+          _id: quotes[ind]._id,
+          name: newQ[0].value,
+          quote: newQ[1].value
+      }
+      const xhr = new XMLHttpRequest()
+      xhr.open('PUT', loc, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onload = ()=>{
+          if (xhr.status === 200) {
+            update('put', newObj, JSON.parse(xhr.responseText), ind)
+          } else { console.log('server error...') }
+      };
+      xhr.onerror = () => { console.log('request error') }
+      xhr.send(JSON.stringify(newObj))
+    }
+
+    function del(ind, id){
+      const xhr = new XMLHttpRequest()
+      xhr.open('DELETE', loc, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onload = ()=>{
+          if (xhr.status === 200) {
+            update('del', null, JSON.parse(xhr.responseText), ind)
+          } else { console.log('server error...') }
+      };
+      xhr.onerror = () => { console.log('request error') }
+      xhr.send(JSON.stringify({_id: id}))
+    }
+
+    function update(type, newObj, userInfo, ind) {
+      if (type === 'post' || userInfo.n) {
+        while (db.hasChildNodes()){db.removeChild(db.lastChild)}
+        if (type === 'del') quotes.splice(ind, 1)
+        if (type === 'put') quotes[ind] = newObj
+        if (type === 'post') quotes.push(newObj)
+        render(quotes)
+        console.log('Successfully Updated: ', userInfo)
+      } else {
+        console.log('data not found')
+      }
+    }
+
+    function render(data){
+      for (const v of data) {
+        newTag(db, 'input', {className: v._id, name: 'name', value: v.name})
+        newTag(db, 'input', {className: 'quote '+v._id, value: v.quote, name: 'quote'})
+        newTag(db, 'button', {
+          innerHTML: 'update/put',
+          e: ['click', e=>{put(quotes.indexOf(v))} ]
+        })
+        newTag(db, 'button', {innerHTML: 'delete',
+          e: ['click', e=>{del(quotes.indexOf(v), (v._id))} ]
+        })
+        newTag(db, null, {innerHTML:'<br>'})
+      }
+    }
+
+    function newTag(par, tag, attr) {
+      const child = document.createElement(tag)
+      for (const att in attr) {
+        if (att === 'e') {
+          child.addEventListener(attr.e[0], attr.e[1])
+        } else {
+          child[att] = attr[att]
+        }
+      }
+      par.appendChild(child)
+    }
+
+  </script>
+  <style media="screen">
+    body {
+      background-color: #ccc;
+    }
+    input, button {
+      margin: 3px;
+    }
+    .quote {
+      width: 400px;
+    }
+  </style>
+</html>
