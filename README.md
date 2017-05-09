@@ -1,2 +1,2 @@
 # Tutorials
-General repository for personally created step-by-step tutorials.
+General repository for Bob Main's personally created step-by-step tutorials.
