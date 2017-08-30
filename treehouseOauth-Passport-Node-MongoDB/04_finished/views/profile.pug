@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .main.container.clearfix
+    .row
+      .col-md-10.col-md-offset-2
+      if(user)
+        h1.display-4
+          img.avatar.img-circle.hidden-xs-down(src=user.photo alt='avatar')
+          | #{user.name}
