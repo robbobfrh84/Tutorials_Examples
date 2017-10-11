@@ -1,0 +1,188 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="references/aws-cognito-sdk.min.js"></script>
+<script src="references/amazon-cognito-identity.min.js"></script>
+<script src="cognito.js"></script>
+<script src="dynamoDB.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.100.0.min.js"></script>
+<style>  html { background-color: #ddd } input { width: 150px;} </style>
+</head>
+  <body>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                            *** TEXT AREA ***
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <div style="float: left">
+      <h2>DynamoDB: Native Auth</h2>
+      <h4> &bull; Read/Write access & user info store</h4>
+      <textarea id="textArea" style="font-size: 14px; width:400px; height:500px; display: block;"></textarea>
+    </div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                       *** SIGNED IN OPERATIONS ***
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <div id="loggedIn" style="float: right; display: none; text-align: right;">
+      <span id='user'></span>
+      <button onclick="logOut()">Log Out</button> <br>
+      <button onclick="logOutAll()" style="float: right">Log Out of All devices</button>
+
+      <br><hr><br>
+
+      &bull; Reading / Writing Items in Batch in DynamoDB <br><br>
+      <div style='font-size: 14px;'>
+        * GetBatchItem from Example from <br> DynamoDB Table: DataBasic (see code: <em>hard coded</em>)
+      </div>
+      <button onclick="getB_DB()"> Get Batch </button>
+
+      <br><br>
+      <div style='font-size: 14px;'>
+        * WriteBatchItem from Example from <br> DynamoDB Table: DataBasic (see code: <em>hard coded</em>)
+      </div>
+      <button onclick="writeB_DB()"> Write Batch </button>
+
+      <br><br>
+      <div style='font-size: 14px;'>
+        * Get Users List from <br> DynamoDB Table: SignUpUserList <br> (see code: <em>hard coded</em>)
+      </div>
+      <button onclick="getUser()"> Get Users </button>
+    </div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                         *** SIGN UP FIELD ***
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <div id="noLogIn" style="float: right; width: 217px;">
+      <div style="float: left">
+        <input id="userNameIn" type="text" placeholder="...username or email"> <br>
+        <input id="passwordIn" type="password" placeholder="...password">
+      </div>
+      <div> <button style="height: 40px; width: 57px;" onclick="signIn()"> Sign In </button> </div>
+
+      <hr>
+      <div style="float: left">
+        <input id="email" type="text" placeholder="...email"> <br>
+        <input id="userNameUp" type="text" placeholder="...username"> <br>
+        <input id="passwordUp" type="password" placeholder="...password">
+      </div>
+      <div> <button style="height: 58px;" onclick="signUp()">Sign Up</button> </div>
+      <hr>
+
+      <div style="float: right; margin: 0px 0px 6px 60px;">
+        <div>
+          <input id="forgotEmail" placeholder="...username or email">
+          <button style="height: 20px; width: 155px; " onclick="forgot()">Forgot Password</button>
+        </div>
+      </div>
+      <hr>
+    </div>
+<!-- <<<<<<<<<<<<<<<<<<< *** CONFIRMATION STATUS *** >>>>>>>>>>>>>>>>>>>>>>> -->
+    <div id='confirmBox' style="float: right; display: none;">
+      <div>
+        <input id="verification" placeholder="...enter varification code">
+        <button style="height: 20px; width: 55px; " onclick="confirm()">Confirm</button>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+
+var attributeList = []
+var ddb
+var region = 'us-west-2'
+var identityPoolId = 'us-west-2:19434e37-7a62-4189-adeb-c1ac26011b45'
+var roleArn = 'arn:aws:iam::118070506734:role/Cognito_SignUpPoolAuth_Role'
+var table1 = 'SignUpUserList'
+var table2 = 'DataBasic'
+var poolData = {
+  UserPoolId : 'us-west-2_lIwEq7e6O', // Your user pool id here
+  ClientId : '5pnntp748hi65035ijm4nl7q4f' // Your client id here
+}
+var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData)
+var userData = {
+    Username : '',
+    Pool : userPool
+}
+var cognitoUser = userPool.getCurrentUser();
+
+window.onload = ()=>{ check_user_status() }
+
+check_user_status = ()=>{
+  // vvv first authenticate user with AWS Cognito User Pool
+  authenticateIdentityPool(()=>{ // callback
+    // Successful login, will then fire up dynamoDB
+    start_dynamoDB((obj)=>{ // callback
+      // get user tables associated with this user
+      fetch_dynamoDB_tables(obj, (userInfo, usersList)=>{
+        // if user is not in dynamodb table add 'em'
+        check_user_to_table(obj, usersList)
+        // if user is not in the UserList row, add 'em'
+        check_user_in_ListUsers(userInfo)
+      })
+    })
+  })
+}
+
+/* ----------------------- COGNITO user life-cycle -------------------------- */
+signUp = ()=>{      signUp_User_To_Pool() }
+confirm = ()=>{     confirm_User() }
+signIn = ()=>{      signIn_User() }
+logOut = ()=>{      logOut_User() }
+logOutAll = ()=>{   logOutAll_Pools_And_Devices()}
+forgot = ()=>{      forgot_User() }
+
+/* --------------------------- DynamoDB Actions --------------------------------*/
+
+getB_DB = ()=>{ // hardcoded data.
+  batchGet_dynamoDB({
+    RequestItems: {
+      [table2]: {
+        Keys: [ {'ID': {N: '1'}}, {'ID': {N: '2'}}, ],
+        ProjectionExpression: 'ID, IDname, Color'
+      }
+    }
+  }, (data, params)=>{ textArea.innerHTML = "*** Successful batchGet from DB ***\n\n"+JSON.stringify(data, undefined, 2) })
+}
+writeB_DB = ()=>{ // hardcoded data.
+  batchWrite_dynamoDB({
+    RequestItems: {
+      [table2]: [
+        {
+          PutRequest: {
+            Item: {
+              "ID": {N: "10" },
+                "IDname": {S: "Ten" },
+                "Color": {S: "Brown" },
+            }
+          }
+        },
+        {
+          PutRequest: {
+            Item: {
+              "ID": {N: "11" },
+                "IDname": {S: "Eleven" },
+                "Color": {S: "Pink" },
+            }
+          }
+        }
+      ]
+    }
+  }, (data, params)=>{ textArea.innerHTML = "*** Successful batchWrite to DB ***\n\n"+JSON.stringify(params, undefined, 2) })
+}
+
+getUser = ()=>{
+  get_dynamoDB({
+    TableName: table1,
+      Key: {
+        'Username': {S: 'ListUsers'},
+        'Client_Id': {S: '0'}
+      }
+    }, (data)=>{
+      let users = []
+      for (const user in data.Item.publicUsers.M) {
+        users.push(user)
+      }
+      textArea.innerHTML = "*** Public Users ***\n\n"+JSON.stringify(users, undefined, 2)
+    }
+  )
+}
+
+</script>
+
+<!-- *** NOTES ***
+
+-->

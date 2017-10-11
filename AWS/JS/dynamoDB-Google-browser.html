@@ -1,0 +1,44 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Google Login JavaScript Example</title>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.100.0.min.js"></script>
+<style> </style>
+</head>
+  <body>
+<span
+  id="login"
+  class="g-signin"
+  data-height="short"
+  data-callback="loginToGoogle"
+  data-cookiepolicy="single_host_origin"
+  data-requestvisibleactions="http://schemas.google.com/AddActivity"
+  data-scope="https://www.googleapis.com/auth/plus.login">
+  <!-- data-scope="https://www.googleapis.com/auth/plus.me"> -->
+</span>
+<!-- <div id="widget_bounds" style=""><div class="Uke wdDeSc"><div class="j3lhAb"><div class="W9Hc9b"><img src="//lh3.googleusercontent.com/-QWBoGs90w_8/AAAAAAAAAAI/AAAAAAAAGKk/XFIfN-I8E-M/s28-c-k-no/photo.jpg" width="28px" height="28px" class="Ld DK0k5c"></div><div class="pEgKxb"><div class="IXAAob">Welcome back</div><div class="JfUpBd">Bob Main</div></div></div><div class="axe"></div></div></div> -->
+</body>
+</html>
+<script>
+  var s3 = null;
+  var clientID = '157914726676-eoies82qrh9jd9kak6b01v65lqtf0fhk.apps.googleusercontent.com' //'1234567890.apps.googleusercontent.com'; // Google client ID
+  var roleArn = 'arn:aws:iam::118070506734:role/Cognito_GoogleSignInAuth_Role';
+
+  document.getElementById('login').setAttribute('data-clientid', clientID);
+  function loginToGoogle(response) {
+    if (!response.error) {
+      AWS.config.credentials = new AWS.WebIdentityCredentials({
+        RoleArn: roleArn, WebIdentityToken: response.id_token
+      });
+      console.log('You are now logged in.');
+      console.log('response: ',response)
+    } else {
+      console.log('There was a problem logging you in.');
+    }
+  }
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/client:plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+ </script>

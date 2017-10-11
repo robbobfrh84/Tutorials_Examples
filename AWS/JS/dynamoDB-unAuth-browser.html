@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.100.0.min.js"></script>
+<style> html * { margin: 3px; } </style>
+</head>
+  <body>
+    *Unauthenticated Client
+    <button onclick='get()' > get </button>
+    <button onclick='put()' > put </button>
+    <textarea id= "textarea" style="width:400px; height:800px; display: block;"></textarea>
+  </body>
+</html>
+<script>
+
+var table = 'public3'
+
+var creds = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: 'us-west-2:e12ab772-0f84-4420-8342-ed658ce5c76e',
+  RoleArn: 'arn:aws:iam::118070506734:role/Cognito_test4Unauth_Role',
+})
+AWS.config.update({
+    region: 'us-west-2',
+    credentials: creds
+});
+var ddb = new AWS.DynamoDB({ apiVersion: '2012-10-08' })
+console.log('ddb :', ddb)
+
+put = ()=>{
+  var params = {
+    TableName: table,
+    Item: {
+      'data' : {S: "User"},
+      'userID' : {N: "2"},
+      'userInfo' : {M:
+          { 'Name' : {S: 'Emily'}, 'age': {N: '34'} }
+      },
+      'An Array' : {L: [ {N: '2'}, {S: 'four'}] }
+    }
+  }
+  ddb.putItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+      document.getElementById('textarea').innerHTML = JSON.stringify(params, null, 2)
+    }
+  })
+}
+
+get = ()=>{
+  var params = {
+    TableName: table,
+    Key: {
+      'data' : {S: "User"},
+    }
+  };
+  ddb.getItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err)
+    } else {
+      console.log("Success", data)
+      document.getElementById('textarea').innerHTML = JSON.stringify(data, null, 2)
+    }
+  })
+}
+
+</script>
+
+<!-- *** NOTES ***
+
+-->

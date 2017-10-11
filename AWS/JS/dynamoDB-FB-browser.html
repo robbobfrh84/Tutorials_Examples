@@ -1,0 +1,274 @@
+<!DOCTYPE html><html><head>
+<title>Facebook Login JavaScript Example</title>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.100.0.min.js"></script>
+<meta charset="UTF-8">
+</head>
+<body>
+  <div id="status"> </div>
+  <fb:login-button id='fblogo' scope="public_profile,email" onlogin="checkLoginState()">
+  </fb:login-button>
+  <div id='more' style='display: none;'>
+    <img id='userPic' src="" style='border-radius: 100%;'>
+    <br> <br>
+
+    <button onclick='fbLogOut()'> Log Out of FaceBook </button> <br>
+    <button onclick='testAPI()'> Test API </button>
+    <br><br>
+    <button onclick='put()' > put </button>
+    <button onclick='get()' > get </button>
+  </div>
+</body>
+<script>
+
+var fbAppId = '889826941180722'
+var poolId = 'us-west-2:fc13acf7-f330-407b-936c-3b8a6ed93ba9'
+var roleArn = 'arn:aws:iam::118070506734:role/Cognito_FBSignInAuth_Role'
+var tableName = 'aws-created1'
+
+AWS.config.region = 'us-west-2'
+var ddb = new AWS.DynamoDB({ apiVersion: '2012-10-08' })
+
+statusChangeCallback = (response)=>{
+  console.log(response);
+  if (response.status === 'connected') {
+    testAPI()
+    more.style.display = ''
+    fblogo.style.display = 'none'
+  } else {
+    document.getElementById('status').innerHTML = 'Please log ' + 'into this app.'
+  }
+}
+
+checkLoginState = ()=>{
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response)
+  })
+}
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : fbAppId,
+    cookie     : true,  // enable cookies to allow the server to access the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  })
+  FB.getLoginStatus((response)=>{
+    statusChangeCallback(response)
+  })
+  FB.login(function (response) {
+    if (response.authResponse) {
+      console.log('You are now logged in.');
+      // Add the Facebook access token to the Cognito credentials login map.
+      ddb.config.credentials = new AWS.CognitoIdentityCredentials({
+        ProviderId: 'graph.facebook.com',
+        IdentityPoolId: poolId,
+        Logins: {
+          'graph.facebook.com': response.authResponse.accessToken
+        }
+      })
+      // Add DynamoDB credentials to your table.
+      ddb.config.credentials.get(function(){
+          ProviderId = 'graph.facebook.com',
+          RoleArn = roleArn,
+          WebIdentityToken = response.authResponse.accessToken
+      })
+    } else {
+      console.log('There was a problem logging you in.');
+    }
+    // Get and add image
+    FB.api('/me', (r)=>{
+      var userPic = document.getElementById('userPic')
+      var link = 'http://graph.facebook.com/'+r.id+'/picture'
+      userPic.src = link
+    })
+    more.style.display = ''
+    fblogo.style.display = 'none'
+  })
+
+};
+
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+testAPI = ()=>{
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
+    console.log('Successful login for: ' + response.name);
+    console.log('response: ',response)
+    document.getElementById('status').innerHTML =
+      'Thanks for logging in, ' + response.name + '!';
+  });
+}
+
+fbLogOut = ()=>{
+  FB.logout(function(response) {
+     console.log('LogOut, response: ',response)
+     document.getElementById('status').innerHTML = 'Successful logout !';
+     more.style.display = 'none'
+     fblogo.style.display = ''
+  });
+}
+
+get = ()=>{
+  var params = {
+    TableName: tableName,
+    Key: {
+      'what_is_it' : {S: "It's IT!"}
+    }
+  };
+  ddb.getItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+}
+
+put = ()=>{
+  var params = {
+    TableName: tableName,
+    Item: {
+      'what_is_it' : {S: "Dynamo Thyme!"},
+      'Number' : {N: "11"},
+      'Object' : {M:
+          { 'person' : {S: 'Bob'}, 'age': {N: '33'} }
+      },
+      'An Array' : {L: [ {N: '1'}, {S: 'two'}] }
+    }
+  };
+  ddb.putItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+}
+
+</script>
+</html>
+
+
+<!-- OLD
+        OLD
+          OLD
+            OLD -->
+
+
+<!-- <!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.100.0.min.js"></script>
+<style> html * { margin: 3px; } </style>
+</head>
+<body>
+  <span>Facbook Auth: </span><span id='userName'> Undefined</span>
+  <button onclick='fbLogOut()'> Log Out </button> <br>
+  <img id='userPic' src="" style='border-radius: 100%;'>
+<button onclick='put()' > put </button>
+<button onclick='get()' > get </button>
+
+<textarea id= "textarea" style="width:400px; height:800px; display: block;"></textarea>
+<script>
+
+var fbUserId, fbUser
+var appId = "889826941180722"
+var roleArn = 'arn:aws:iam::118070506734:role/fbrole'
+var tableName = 'aws-created1'
+
+AWS.config.region = 'us-west-2'
+var ddb = new AWS.DynamoDB({ apiVersion: '2012-10-08' })
+
+/* - FACEBOOK Authentication - */
+window.fbAsyncInit = ()=>{ // * Login to your application using Facebook. Uses the Facebook SDK for JavaScript available here: * https://developers.facebook.com/docs/javascript/quickstart/
+  FB.init({ appId: appId });
+  FB.login(function (response) {
+    ddb.config.credentials = new AWS.WebIdentityCredentials({
+      ProviderId: 'graph.facebook.com',
+      RoleArn: roleArn,
+      WebIdentityToken: response.authResponse.accessToken
+    })
+    fbUserId = response.authResponse.userID;
+    console.log('Access Granted! response: ', response)
+    FB.api('/me', (r)=>{
+      fbUser = r
+      document.getElementById('userName').innerHTML = fbUser.name
+      document.getElementById('textarea').innerHTML = 'facebook User Id: '+fbUser.id
+      var userPic = document.getElementById('userPic')
+      var link = 'http://graph.facebook.com/'+fbUser.id+'/picture'
+      userPic.src = link
+    })
+  })
+}
+
+get = ()=>{
+  var params = {
+    TableName: tableName,
+    Key: {
+      'what_is_it' : {S: "It's IT!"}
+    }
+  };
+  ddb.getItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+}
+
+put = ()=>{
+  var params = {
+    TableName: tableName,
+    Item: {
+      'what_is_it' : {S: "Dynamo Thyme!"},
+      'Number' : {N: "11"},
+      'Object' : {M:
+          { 'person' : {S: 'Bob'}, 'age': {N: '33'} }
+      },
+      'An Array' : {L: [ {N: '1'}, {S: 'two'}] }
+    }
+  };
+  ddb.putItem(params, (err, data)=>{
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+}
+
+// Sign
+// Out
+// ?
+// Doesn't
+// Work
+
+fbLogOut = ()=>{
+  FB.logout(function(response) {
+
+    // FB.Auth.setAuthResponse(null, 'unknown');
+    console.log('response', response)
+  });
+}
+
+// Load the Facebook SDK asynchronously
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+</script>
+</body>
+</html> -->

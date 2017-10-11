@@ -1,0 +1,172 @@
+<html><head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+<style media="screen"> html * { margin: 5px; }</style>
+</head>
+<body>
+<input id="createTableButton" type="button" value="Create Table"/>
+<input id='tableName' type="text" value="" placeholder="...enter table name"/> <br>
+<button id="list"> List your Tables </button> <br>
+<button id="describe"> Describe Table </button>
+<input id='table' type="text" value="test-table1"/> <br>
+<button id="deleteT"> Delete Table </button>
+<input id='delTable' type="text" placeholder="...enter table name"/> <br>
+<button id="put"> Put </button>
+<button id="get"> Get </button>
+<button id="del"> Delete </button> <br>
+
+
+
+<textarea id= "textarea" style="width:400px; height:800px"></textarea>
+</body>
+<script>
+
+// Credentialing with Hard-coded Keys .... only use for localhost testing and NEVER publish to GITHUB!!!
+AWS.config.update({
+  region: "us-west-2",
+  /*** !!! REMOVE !!! ***/ 
+  accessKeyId: "",
+  secretAccessKey: ""
+  /*** !!! REMOVE !!! ***/
+})
+
+var ddb = new AWS.DynamoDB({ apiVersion: '2012-10-08',})
+
+var newTable = {
+  AttributeDefinitions: [
+    { AttributeName: 'CUSTOMER_ID', AttributeType: 'N' },
+    { AttributeName: 'CUSTOMER_NAME', AttributeType: 'S' }
+  ],
+  KeySchema: [
+    { AttributeName: 'CUSTOMER_ID', KeyType: 'HASH', },
+    { AttributeName: 'CUSTOMER_NAME', KeyType: 'RANGE' }
+  ],
+  ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 },
+  TableName: 'PLACEHOLDER_TABLE_NAME',
+  StreamSpecification: { StreamEnabled: false }
+}
+
+document.getElementById('textarea').innerHTML = JSON.stringify(newTable, null, 2)
+
+// Create a Table
+createTableButton.addEventListener('click', ()=>{
+  let params = JSON.parse(textarea.innerHTML)
+  params.TableName = tableName.value || params.TableName
+  ddb.createTable(params, function(err, data) {
+    if (err) {
+        document.getElementById('textarea').innerHTML = "ERROR: " + "\n" + JSON.stringify(err, undefined, 2)
+    } else {
+        document.getElementById('textarea').innerHTML = "Created table: " + "\n" + JSON.stringify(data, undefined, 2)
+    }
+  })
+})
+
+// Listing Your tables
+list.addEventListener('click', ()=>{
+  ddb.listTables({Limit: 10}, function(err, data) {
+    if (err) {
+      document.getElementById('textarea').innerHTML = "ERROR: " + "\n" + JSON.stringify(err, undefined, 2)
+    } else {
+      document.getElementById('textarea').innerHTML = "List Tables: \n - - - - \n" + JSON.stringify(data.TableNames, undefined, 2)
+    }
+  })
+})
+
+// Describing a Table
+describe.addEventListener('click', ()=>{
+  let params = {
+    TableName: table.value
+  };
+  ddb.describeTable(params, function(err, data) {
+    if (err) {
+      document.getElementById('textarea').innerHTML = "ERROR: " + "\n" + JSON.stringify(err, undefined, 2)
+    } else {
+      document.getElementById('textarea').innerHTML = "Describe Table: \n - - - - \n" + JSON.stringify(data.Table.KeySchema, undefined, 2)
+    }
+  })
+})
+
+// Deleting a Table
+deleteT.addEventListener('click', ()=>{
+  let params = {
+    TableName: delTable.value
+  }
+  ddb.deleteTable(params, function(err, data) {
+    if (err && err.code === 'ResourceNotFoundException') {
+      document.getElementById('textarea').innerHTML = "ERROR (table not found): " + "\n" + JSON.stringify(err, undefined, 2)
+    } else if (err && err.code === 'ResourceInUseException') {
+      document.getElementById('textarea').innerHTML = "ERROR (table in use): " + "\n" + JSON.stringify(err, undefined, 2)
+    } else if (err) {
+      document.getElementById('textarea').innerHTML = "ERROR: " + "\n" + JSON.stringify(err, undefined, 2)
+    } else {
+      document.getElementById('textarea').innerHTML = "Table Removed: \n - - - - \n" + JSON.stringify(data, undefined, 2)
+    }
+  })
+})
+
+// Write to your Your tables
+put.addEventListener('click', ()=>{
+  // let params = {
+  //   TableName: 'aws-created1',
+  //   Item: {
+  //     'what_is_it' : {S: '5'},
+  //   }
+  // };
+  var params = {
+      TableName :"Movies",
+      Item:{
+        "year": {N: '2010'},
+        "title": {S: "BOACK"},
+        "plot": {S: "Nothing happens at all."},
+        "rating": {N: '2'}
+      }
+  };
+  // Call DynamoDB to add the item to the table
+  ddb.putItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+})
+
+// Get from your Your table
+get.addEventListener('click', ()=>{
+  var params = {
+    TableName: 'Movies',
+    Key: {
+      "year": {N: '2010'},
+      "title": {S: "BOACK"}
+    }
+  };
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+})
+
+del.addEventListener('click', ()=>{
+  var params = {
+    TableName: 'test-table4',
+    Key: {
+      'CUSTOMER_NAME' : {S: 'Jane Doe'},
+    }
+  };
+
+  // Call DynamoDB to delete the item from the table
+  ddb.deleteItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  })
+})
+
+
+</script>
+</html>
