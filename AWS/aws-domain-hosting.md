@@ -87,5 +87,7 @@ Back in “Route 53”
 - Toggle [x] (or just click) in the row that has the “Type” NS…
 - IMPORTANT - copy all the NS (name servers) from the NON-www zones
   - past it in the value box.
+- *OK*... after doing this twice this part seems to take awhile/ I didn't take effect awhile after and I had to do some fussing about.
+- *maybe* you ahve to ad the www. one tow the non-www one? I did on both color-selector and colin-vs-bob, but don't know if it's required and I just wasn't patient
 
 - LINK: http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
