@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Demo: Getting an email address using the Google+ Sign-in button</title>
+    <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
+  </head>
+  <style media="screen">
+    html { background-color: #eee; }
+    h3 { display: inline-block; color: #444; margin: 2px;}
+    #avatar-shell { border-radius: 100%; background-color: #ccc; width: 50px; height: 50px; margin: 5px;}
+    #avatar {font-size: 40px; padding-top: 3px; padding-left: 9px; color: #aaa; background: url("");}
+  </style>
+  <body>
+    <div id="gConnect" class="button">
+      <button class="g-signin"
+          data-scope="email"
+          data-clientid="157914726676-eoies82qrh9jd9kak6b01v65lqtf0fhk.apps.googleusercontent.com"
+          data-callback="onSignInCallback"
+          data-theme="dark"
+          data-cookiepolicy="single_host_origin">
+      </button><br><br>
+      <div id='avatar-shell'><div id='avatar'>&#x272a;</div></div>
+      <div id='userInfo'></div>
+      <br>
+      <div id="response" class="hide">
+        <textarea id="responseContainer" style="width:100%; height:100%;"></textarea>
+      </div>
+    </div>
+  </body>
+
+  <script>
+
+  var u;
+
+  function onSignInCallback(resp) {
+    gapi.client.load('plus', 'v1', apiClientLoaded);
+  }
+
+  function apiClientLoaded() {
+    gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
+  }
+
+  function handleEmailResponse(resp) {
+    var primaryEmail;
+    u = resp;
+    for (var i=0; i < resp.emails.length; i++) {
+      if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+    }
+    document.getElementById('responseContainer').value = 'Primary email: ' +
+        primaryEmail + '\n\nFull Response:\n' + JSON.stringify(resp, null, 2);
+    var userInfo = document.getElementById('userInfo')
+    var avatar = document.getElementById('avatar-shell')
+    avatar.innerHTML = `
+      <img src="${ resp.image.url }" style='border-radius: 100%;'>
+    `
+    userInfo.innerHTML = `
+      <div> Display Name: <h3> ${ resp.displayName } </h3> </div>
+      <div> Gender: <h3> ${ resp.gender } </h3> </div>
+      <div> email: <h3> ${ resp.emails[0].value } </h3> </div>
+      <div> ID: <h3> ${ resp.id } </h3> </div>
+    `
+  }
+
+  _REQ = (type, uri, data, callback)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.open(type, uri, true);
+    if (type === 'POST' || type === "PUT") xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        console.log('!',xhr)
+        if (callback) callback(JSON.parse(xhr.responseText))
+      }
+    }
+    if (type === 'POST' || type === 'PUT') xhr.send(JSON.stringify(data))
+    else xhr.send(null)
+  }
+
+  </script>
+
+</html>

@@ -12,13 +12,27 @@
   data-callback="loginToGoogle"
   data-cookiepolicy="single_host_origin"
   data-requestvisibleactions="http://schemas.google.com/AddActivity"
-  data-scope="https://www.googleapis.com/auth/plus.login">
-  <!-- data-scope="https://www.googleapis.com/auth/plus.me"> -->
+  data-scope="https://www.googleapis.com/auth/plus.login"
+  data-scope="https://www.googleapis.com/auth/plus.me">
 </span>
-<!-- <div id="widget_bounds" style=""><div class="Uke wdDeSc"><div class="j3lhAb"><div class="W9Hc9b"><img src="//lh3.googleusercontent.com/-QWBoGs90w_8/AAAAAAAAAAI/AAAAAAAAGKk/XFIfN-I8E-M/s28-c-k-no/photo.jpg" width="28px" height="28px" class="Ld DK0k5c"></div><div class="pEgKxb"><div class="IXAAob">Welcome back</div><div class="JfUpBd">Bob Main</div></div></div><div class="axe"></div></div></div> -->
+
+<div id="widget_bounds" style=""><div class="Uke wdDeSc"><div class="j3lhAb"><div class="W9Hc9b">
+  <img src="//lh3.googleusercontent.com/-QWBoGs90w_8/AAAAAAAAAAI/AAAAAAAAGKk/XFIfN-I8E-M/s28-c-k-no/photo.jpg" width="28px" height="28px" class="Ld DK0k5c">
+  </div><div class="pEgKxb"><div class="IXAAob">Welcome back</div><div class="JfUpBd">Bob Main</div></div></div><div class="axe"></div></div>
+</div>
+
 </body>
 </html>
 <script>
+// !!!
+// NOTE: GOTTA BE 8080 `HTTP-SERVER -c-1` AT>8080 (NOT 8081 OR ANYTHINGS FOR THE TO WORK, that's what the app is looking for.)
+// !!!
+
+/*
+
+*/
+
+
   var s3 = null;
   var clientID = '157914726676-eoies82qrh9jd9kak6b01v65lqtf0fhk.apps.googleusercontent.com' //'1234567890.apps.googleusercontent.com'; // Google client ID
   var roleArn = 'arn:aws:iam::118070506734:role/Cognito_GoogleSignInAuth_Role';
@@ -27,10 +41,15 @@
   function loginToGoogle(response) {
     if (!response.error) {
       AWS.config.credentials = new AWS.WebIdentityCredentials({
-        RoleArn: roleArn, WebIdentityToken: response.id_token
+        RoleArn: roleArn,
+        WebIdentityToken: response.id_token
       });
+      s3 = new AWS.S3;
+      AWS.config.credentials.params.WebIdentityToken = response.access_token
       console.log('You are now logged in.');
       console.log('response: ',response)
+      console.log('AWS.config.credentials',AWS.config.credentials)
+
     } else {
       console.log('There was a problem logging you in.');
     }
