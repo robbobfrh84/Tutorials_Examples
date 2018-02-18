@@ -3,6 +3,10 @@
 This is a different than the Chap-1-2-Notes uses. Link > https://github.com/danilop/AWS_Lambda_in_Action/blob/master/Chapter02/customGreetingsOnDemand.js
 NOT the randomXY function.
 
+Example (randomXY) > https://8jvcewuzyc.execute-api.us-east-1.amazonaws.com/prod/randomxy?XLabel=height&YLabel=pounds&Xrange=4%2C8&Yrange=100%2C350#
+Example (greeting) > https://8jvcewuzyc.execute-api.us-east-1.amazonaws.com/prod/greetings?name=YOU&greet=hey%2C
+Example (MyIp) > https://8jvcewuzyc.execute-api.us-east-1.amazonaws.com/prod/my-ip
+
 Sign onto the AWS Gateway Web console...
 - Sign into AWS and click the aws icon.
 - Search for api or under 'Networking & Content Delivery' find
@@ -51,7 +55,7 @@ Integration Request
   - in the field YOU HAVE TO WRITE IT > "application/json" ... even tho it's already there as the suggested value.
   - Select the Check mark to add.
     - Keep generate template empty fo now...
-    - write {"name":"$input.params('name')"}
+    - write `{"name":"$input.params('name')"}`
     - Click [Save]
 - After added, go back by selecting [<- Method Execution] at the top.
 
@@ -104,3 +108,53 @@ Now look in the left panel for the 'prod' dropdown directory. Click it and you'l
 Here's the API with no query > https://8jvcewuzyc.execute-api.us-east-1.amazonaws.com/prod/greetings
 
 And here it is with my Name > https://8jvcewuzyc.execute-api.us-east-1.amazonaws.com/prod/greetings?name=Bob
+
+# Using resource paths as Parameters (see Page 52)
+So now we're going to build this out beyond how we originally wrote the Lambda function. We're not bound by the term like 'greetings', let's play with the conept of User... and nested resources and endpoints.
+
+In the side menu under APIs / "my Utilities" Select **Resources**
+Starting from /, which must be selected Create a new Resource. Reference above like we did with Greeting, and /greeting.
+- This time User, /user (remember it autofills)
+
+Now, by selecting **/user** create another resource "Depending Resource" and use Username, /{username} (change the Resource Path to have the braces!)
+
+***NOTE:*** by using {username} the API Gateway interprets it as a parameter. ALSO here we can have **NESTED RESOURCES**.
+
+NOW, nest again with Greet, /greet
+
+Now click **/greet** and **Create Method** and add a **GET** request. Now, add the region and call it greetingOnDemand (using the same Lambda function as before).
+
+In the [Integrated Request], toggle "When there are no templates defined...", type in application/json, and add this code to the field...
+```
+#set ($name = $input.params('username'))
+{
+#if ($name != "")
+"name": "$name"
+#end
+}
+```
+After that's saved we can move onto [Integration Response] and set the same { "greetings": "$input.path('$')" } like before under that only "200" dropdown there.. just like before.
+
+now we can go the the client test (LIGHTING BOLT) area and test for...
+...robbobfrh84 in the {username} path, and get the same results as name before.
+
+#### Adding another field with condition to greeting ('greet')
+
+See page 58 for more detail about catching the edge-cases/empty fields
+
+
+```
+#set ($greet = $input.params('greet'))
+#set ($name = $input.params('name'))
+{
+#if ($greet != "")
+  "greet": "$greet"
+  #if ($name != "")
+  ,
+  #end
+#end
+#if ($name != "")
+"name": "$name"
+#end
+}
+```
