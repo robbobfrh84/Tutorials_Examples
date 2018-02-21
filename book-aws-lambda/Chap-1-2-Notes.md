@@ -76,19 +76,13 @@ REPORT RequestId: 0fe7981a-10de-11e8-bc86-49333367c8b3	Duration: 0.55 ms	Billed 
 Install aws cli on terminal to access your functions directly from your terminal!!!!
 
 - to for installation instructions > https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html
-
 - Install Pythong 3.6 > https://www.python.org/downloads/mac-osx/
-
 - So i went down the PIP insallation path and ran into wall then just bunked back out to...
-
-`brew install awscli`
+- `brew install awscli`
 
 ...and ^^^ that just worked... so ONWARD...
-
 - Now you need to configure your aws api call... So do
-
-`aws configure`
-
+- `aws configure`
 - now, it'll ask for you access key id. to get that follow this link: https://console.aws.amazon.com/iam/home?#/security_credential
 - now open access keys and copy [Access Key ID]
 - Paste that in your command line after aws configure...
@@ -97,12 +91,9 @@ Install aws cli on terminal to access your functions directly from your terminal
   - so i had to create a new one and it changed the Access Key ID in the process so i had to go back and enter that again.
   - now for region put your region `us-east-1` (yours may be different)
   - now for format put `json`
-
 - For my code above i ran this command...
-
 `aws lambda invoke --function-name randomXY --payload '{"XLabel":"Month","Xrange":[1,12],"YLabel":"Miles Ran","Yrange":[0,120]}' desktop/myData.json
 `
-
 - That should create a file on your desktop with the random results from you func! Ya
 
 

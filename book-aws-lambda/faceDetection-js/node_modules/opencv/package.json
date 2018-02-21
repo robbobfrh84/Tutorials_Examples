@@ -1,0 +1,81 @@
+{
+  "name": "opencv",
+  "version": "5.0.0",
+  "description": "Node Bindings to OpenCV",
+  "author": {
+    "name": "Peter Braden",
+    "email": "peterbraden@peterbraden.co.uk"
+  },
+  "dependencies": {
+    "buffers": "^0.1.1",
+    "nan": "^2.0.9",
+    "node-pre-gyp": "^0.6.11"
+  },
+  "devDependencies": {
+    "tape": "^3.0.0",
+    "aws-sdk": "~2.1.20",
+    "glob": "^5.0.3",
+    "request": "^2.44.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "node-gyp build",
+    "test": "node test/unit.js",
+    "install": "node-pre-gyp install --fallback-to-build"
+  },
+  "keywords": [
+    "opencv",
+    "computer",
+    "vision",
+    "quadrocopter"
+  ],
+  "main": "./lib/opencv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterbraden/node-opencv.git"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "binary": {
+    "module_name": "opencv",
+    "module_path": "./build/{module_name}/v{version}/{configuration}/{node_abi}-{platform}-{arch}/",
+    "remote_path": "./{module_name}/v{version}/{configuration}/",
+    "package_name": "{node_abi}-{platform}-{arch}.tar.gz",
+    "host": "https://node-opencv.s3.amazonaws.com"
+  },
+  "gitHead": "5fb426aa1428b3d16e7fb0b1412f44410077382e",
+  "bugs": {
+    "url": "https://github.com/peterbraden/node-opencv/issues"
+  },
+  "homepage": "https://github.com/peterbraden/node-opencv",
+  "bundleDependencies": [
+    "node-pre-gyp"
+  ],
+  "_id": "opencv@5.0.0",
+  "_shasum": "8da2bf34b5e8e9e33379c039010306d3ec2a5865",
+  "_from": "opencv@",
+  "_npmVersion": "2.5.1",
+  "_nodeVersion": "1.2.0",
+  "_npmUser": {
+    "name": "peterbraden",
+    "email": "peterbraden@peterbraden.co.uk"
+  },
+  "maintainers": [
+    {
+      "name": "peterbraden",
+      "email": "peterbraden@peterbraden.co.uk"
+    }
+  ],
+  "dist": {
+    "shasum": "8da2bf34b5e8e9e33379c039010306d3ec2a5865",
+    "tarball": "http://registry.npmjs.org/opencv/-/opencv-5.0.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-6-west.internal.npmjs.com",
+    "tmp": "tmp/opencv-5.0.0.tgz_1455007444049_0.017289589159190655"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/opencv/-/opencv-5.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}
