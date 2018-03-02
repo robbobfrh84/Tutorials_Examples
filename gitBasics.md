@@ -21,6 +21,8 @@ $ `get checkout -- <file>`: Removes changes of file from existing branch.
 
 $ `git push origin <branch-name>`, OR: $ `git remote add origin <server>`
 
+$ `git merge <branch>`, from branch you want to mergin into(* master)
+
 $ `git pull`
 
 ----
