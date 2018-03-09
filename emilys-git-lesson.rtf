@@ -1,0 +1,140 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red53\green53\blue53;\red255\green255\blue255;\red26\green26\blue26;
+}
+{\*\expandedcolortbl;;\cssrgb\c27059\c27059\c27059;\cssrgb\c100000\c100000\c100000;\cssrgb\c13333\c13333\c13333;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww13320\viewh11180\viewkind0
+\deftab720
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f0\b\fs34 \cf2 \cb3 \expnd0\expndtw0\kerning0
+GIT REBASE
+\b0 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 \
+Perhaps the best way to explain it is with an example:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+Alice creates topic branch A, and works on it\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+Bob creates unrelated topic branch B, and works on it\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+Alice does\'a0git checkout master && git pull. Master is already up to date.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+Bob does\'a0git checkout master && git pull. Master is already up to date.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+Alice does\'a0git merge topic-branch-A\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+Bob does\'a0git merge topic-branch-B\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+Bob does\'a0git push origin master\'a0before Alice\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+Alice does\'a0git push origin master, which is rejected because it's not a fast-forward merge.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	9.	}\expnd0\expndtw0\kerning0
+Alice looks at origin/master's log, and sees that the commit is unrelated to hers.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	10.	}\expnd0\expndtw0\kerning0
+Alice does\'a0git pull --rebase origin master\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	11.	}\expnd0\expndtw0\kerning0
+Alice's merge commit is unwound, Bob's commit is pulled, and Alice's commit is applied after Bob's commit.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	12.	}\expnd0\expndtw0\kerning0
+Alice does\'a0git push origin master, and everyone is happy they don't have to read a useless merge commit when they look at the logs in the future.\cb1 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \cb3 Note that the specific branch being merged into is irrelevant to the example. Master in this example could just as easily be a release branch or dev branch. The key point is that Alice & Bob are simultaneously merging their local branches to a shared remote branch.\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \cb1 \uc0\u8232 \cb3 \
+\pard\pardeftab720\sl420\partightenfactor0
+
+\b\fs34 \cf2 MERGE CONFLICTS
+\b0 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 \
+mkdir new-git-repository,\
+cd new-git-repository\
+git init\
+echo Text within file for master branch > some-file.txt\
+git add some-file.txt\
+git commit -m \'93first commit on master branch\'94\
+git checkout -b another-branch\
+echo Adding more text within my file from another-branch > some-file.txt\
+git add some-file.txt\
+git commit -m \'93first commit on another-branch\'94\
+git checkout master\
+echo Putting more text into my file from the master branch > some-file.txt\
+git add some-file.txt\
+git commit -m \'93second commit on master branch\'94\
+git merge another-branch\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \cb1 \uc0\u8232 \cb3 \
+MERGE CONFLICT!\
+\cb1 \uc0\u8232 \cb3 \
+\pard\pardeftab720\sl420\partightenfactor0
+
+\b\fs34 \cf2 GIT ADD
+\b0 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 # git-add-exercise\
+A short exercise to learn the git `add` commands.\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \cb1 \uc0\u8232 \cb3 \
+## Summary\
+* `git add file-name`: Will stage *only* the changes of the file you specify.\
+* `git add -A`: Will stage *all* changes.\
+* `git add .`: Will stage new files and modified content, excluding any *deleted* files.\
+* `git add -u`: Will stage modified content within files, and deleted files, but excludes *newly created* files.\
+* `git add *`: Will stage all files of a specific file type, such as `.txt`.\
+\cb1 \uc0\u8232 \cb3 \
+### Exercise\
+First, we need to initialize a GitHub repository within Terminal.\
+Type `mkdir new-directory-name` to make a new directory.\
+`cd new-directory-name` into that directory, and type `git init`.\
+\cb1 \uc0\u8232 \cb3 \
+Now, this repository is initialized with git and you can add files and start using *any* git command.\
+\cb1 \uc0\u8232 \cb3 \
+To quickly write to a new file for this exercise, we're going to be using the command `echo`.\'a0\'a0This isn't a git command, it's a command you can use anywhere within Terminal to write to files.\
+\cb1 \uc0\u8232 \cb3 \
+Type:\
+`echo Content within file > first-file`\
+`echo File to be deleted eventually > second-file`\
+Now, if you type `git status` you'll see that both of those files have been created, and if you open Atom (`atom .`) from your repository, you'll see the sentences we wrote within each file.\
+\cb1 \uc0\u8232 \cb3 \
+Then:\
+`git add first-file second-file`: This command will add only the `first-file` and `second-file`. If there were any other files with changes, those files would be ignored by this command.\
+Let's commit those additions: `git commit -m "Initial commit"`\
+\cb1 \uc0\u8232 \cb3 \
+`echo More text! >> first-file`\
+`rm second-file`: This will delete the directory called `second-file`\
+`echo Adding a third file > third-file`\
+\cb1 \uc0\u8232 \cb3 \
+Once you `git status`, you'll see that the `first-file` and `second-file` have been changed but not updated.\'a0\'a0`first-file` was modified, since we changed the text within the file with the `echo` command but have not added these specific changes yet. The `second-file` is *deleted*, but since we have not ran `git add` and `git commit` on these changes, they're both hanging in limbo.\
+The `third-file` is under untracked files because we've created it, but we haven't done `git add` yet.\
+\cb1 \uc0\u8232 \cb3 \
+Here's the fun part!\
+\cb1 \uc0\u8232 \cb3 \
+Type `git add .` and then `git status`.\
+\cb1 \uc0\u8232 \cb3 \
+You'll see that the added files ready to be committed are our new file `third-file` and our previously modified file `first-file`.\'a0\'a0The file that has *not* been included in the `git add .` command is the deleted file `second-file`.\'a0\'a0This is because `git add .` ignores the deletion of files. We have another command for this scenario.\
+\cb1 \uc0\u8232 \cb3 \
+For this exercise, we want to type `git reset`, which will un-do the previous `git add .` and bring us back to having two files "Changed but not updated" and our third file as "Untracked".\
+\cb1 \uc0\u8232 \cb3 \
+Now we can lean about the next git command: `git add -u`.\
+\cb1 \uc0\u8232 \cb3 \
+Type `git add -u` and then `git status` to see that `first-file` and `second-file` have been included as files that can now be committed using `git commit`.\'a0\'a0The `third-file`, as you can see, is now untracked and not included in the `git add -u` command.\'a0\'a0This is because `git add -u` only includes already existing files (which includes modified files *and* deleted files), but will not include newly made files.\
+\cb1 \uc0\u8232 \cb3 \
+Type `git reset` to go back to our original status.\
+\cb1 \uc0\u8232 \cb3 \
+Let's see what `git add -A` does!\
+Type `git add -A` and `git status` to see that not only are the modified `first-file` and deleted `second-file` included, but the brand-new `third-file` is also included in changes ready to be committed!\
+\cb1 \uc0\u8232 \cb3 \
+This is because `git add -A` is all-inclusive. It may in fact be your most commonly used `git add` command for this reason.\
+\cb1 \uc0\u8232 \cb3 \
+ALSO: `git add *` is an option if you have several of the same-type file you need to add. For example, if there are 10 `.txt` files to be added at the same time, you can type `git add *.txt`, and they'll all be staged. HOORAY!\
+\pard\pardeftab720\sl300\partightenfactor0
+
+\f1\fs25\fsmilli12800 \cf4 \
+}

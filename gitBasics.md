@@ -25,6 +25,10 @@ $ `git merge <branch>`, from branch you want to mergin into(* master)
 
 $ `git pull`
 
+$ `git fetch`
+
+$ `git rebase <of branch i.e. master>`
+
 ----
 
 ### Create A new Repository
@@ -140,3 +144,23 @@ Move to the master branch $ `git checkout master`.
 
 - Now, run $ `git merge first-branch`
 - Now, to finilize, run $ `git pull` to update your master on your local.
+
+### fetch & rebase
+
+Lets say the branch I'm working on needs updated code from the master branch.
+
+Go to you your branch and run the command...
+- $ `git fetch`, this will get the changes from master and put it on your index.
+
+Now execute the changes on top of you code.
+- $ `git rebase master`
+
+### flow: add commit push merge pull delete
+- $ `git add .`
+- $ `git commit -m 'some message'`
+- $ `git push origin <branch>`
+- $ `git checkout master`
+- $ `git merge origin <branch>`
+- $ `git push origin master`
+- $ `git pull`
+- $ `git branch -d <branch>`
