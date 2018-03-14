@@ -22,11 +22,11 @@ Add Name Servers
 - On the left-navbar click `Hosted Zone`
 - Click-> the domain name you’ve just added … whatever.com
 - Toggle `[ ]` (or just click) in the row that has the `Type` NS…
-- Copy all the NS (name servers) inside the Value input box. For Example...
-  - `ns-1949.awsdns-51.co.uk.`
-  - `ns-936.awsdns-53.net.`
-  - `ns-1399.awsdns-46.org.`
-  - `ns-199.awsdns-24.com.`
+- Copy all the NS (name servers) inside the Value input box. For Example... (emit last '.')
+  - `ns-1949.awsdns-51.co.uk`
+  - `ns-936.awsdns-53.net`
+  - `ns-1399.awsdns-46.org`
+  - `ns-199.awsdns-24.com`
 - **NOTE:** Those are **Not** the same NS code you need, get your own!
 
 ### Back to > namecheap.com
@@ -89,9 +89,9 @@ Set up as a Static Website
 Find your way back to the route53
 - In the `Hosted Zone` click the domain name you set up earlier.
 - click —> `[Create Record Set]`
-- I should have an empty input for name with your domain name to the right. KEEP IT empty if the domain name to the right is correct.
+- You should have an empty input for name with your domain name to the right. KEEP IT empty if the domain name to the right is correct.
 - Toggle Alias `[x] YES`.
-- Under `Alias Target`, click the first one that pops up which *should* be your S3 bucket.
+- Under `Alias Target`, click the first one that pops up which *should* be your S3 bucket. **THIS CAN TAKE A FEW MINUTES**. try refreshing the page everyone minute or so and double check your domain is correct.
 - Keep the other fields default.
 - click-> `[Create]`
 
@@ -121,18 +121,21 @@ Back in “Route 53”
 - Toggle `[x]` (or just click) in the row that has the “Type” NS…
 - **IMPORTANT!:** Copy all the NS (name servers) from the NON-www zone
   - Past them into the value box. Similar to what you pasted into namecheap's "Custom DNS" section from before.
+  - NOTE: this NEED the '.' at the end!
 - Click-> `[Save Record Set]`
 
 - Click-> `[Create Record Set]` leave "Name:" blank like before and toggle "Alias" to `[X]` Yes.
 - Click the "Alias Target" input area and select the `www.example.com` with the S3 bucket url and click-> `[Create]`.
 
 - Navagate back to your (NON-www) hosted zone example.com.
-- Click-> `[Save Record Set]`
+- Click-> `[Create Record Set]`
 - Just type `www` into the "Name:" input field, NO spaces! you'll see how this creates `[www] example.com` in a strange way.
 -  toggle "Alias" to `[X]` Yes.
 - Click the "Alias Target" input area and select the `www.example.com` with the S3 bucket url and click-> `[Create]`.
 
-Ok, so now you should be able to use both www or emit www like you would normally. good job!
+This can take a few minutes!...
+
+...Ok, so now you should be able to use both www or emit www like you would normally. good job!
 
 #### The Internet is now Complete! ;-)
 
