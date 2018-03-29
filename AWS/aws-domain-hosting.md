@@ -12,7 +12,8 @@ Create a Hosted zone
 - Under the `All services` dropdown, find `Networking & Content Delivery` and  click-> `Route 53`
 - Click -> `Hosted zones` on the left nav
 - Click -> `[Create Hosted Zone]`
-- In the right pane titled, `Create Hoted Zone`
+
+In the right pane titled, `Create Hosted Zone`
 - Paste the Source URL: … *whatever.com*
   - **Important!:** You're just pasting the domain name and the top-level domain name. In the example above, ".com" is the top-level domain name. When combined with "whatever", it is called the second-level domain name.
 - You can leave the `Comment:` section empty, but make sure `Public Hosted Zone` is slelcted as the `Type`.
