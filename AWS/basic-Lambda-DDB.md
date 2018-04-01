@@ -34,7 +34,7 @@ Lambda > in text editor
 
 ```javascript
 var AWS = require('aws-sdk');
-var dynamodb = new AWS.DynamoDB();
+var dynamodb = new AWS.DynamoDB({region: 'us-east-1'});
 var table = 'basicLambda';
 
 exports.handler = (event, context, callback) => {
