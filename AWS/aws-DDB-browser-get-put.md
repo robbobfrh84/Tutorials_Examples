@@ -12,6 +12,7 @@ Create A Federated Identity
 - Click ->`view details` for **Unauthenticated** click ->`View Policy Document`
 - Add `"dynamodb:*"` to "Action" and the table's ARN to "Resource"
 - Here is where you can fine-tune, for read only if you like.
+- ADD your ddb arn to `"resources"` like example below replace `*`.
 ```json
 {
     "Version": "2012-10-17",
@@ -84,4 +85,38 @@ documentClient.get(params, function(err, data) {
 
 </html>
 
+```
+
+### dirty code example for put and Update
+```JavaScript
+
+const arrayKey = 'blocks' // Array to ADD to, OR will CREATE if not there.
+const updateData = boxData // Object/data to add in index... ^^^
+
+documentClient.update({
+  TableName: ddbTable,
+  Key: { name: 'default' }, // New item name will be created, or appended to
+  ReturnValues: 'ALL_NEW',
+  UpdateExpression: 'set #'+arrayKey+' = list_append(if_not_exists(#'+arrayKey+', :empty_list), :'+arrayKey+')',
+  ExpressionAttributeNames: {
+    ['#'+arrayKey]: arrayKey
+  },
+  ExpressionAttributeValues: {
+    [':'+arrayKey]: [updateData],
+    ':empty_list': []
+  }
+}, function(err, data) {
+    if (err) console.log(err, err.stack)
+    else console.log(' ! updateItem successful !')
+});
+
+
+console.log("Adding a new item...");
+docClient.put(params, function(err, data) {
+  if (err) {
+    console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+  } else {
+    console.log("Added item:", JSON.stringify(data, null, 2));
+  }
+});
 ```

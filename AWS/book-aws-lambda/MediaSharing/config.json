@@ -1,0 +1,14 @@
+{
+  "AWS_ACCOUNT_ID": "118070506734",
+  "REGION": "us-east-1",
+  "BUCKET": "robbobfrh84-media-sharing-images",
+  "MAX_AGE": "10",
+  "DDB_TABLE": "MediaSharingImages",
+  "IDENTITY_POOL_NAME": "SampleAuth",
+  "DEVELOPER_PROVIDER_NAME": "login.yourdomain.com",
+  "EXTERNAL_NAME": "Sample Authentication",
+  "EMAIL_SOURCE": "bobmain49@gmail.com",
+  "VERIFICATION_PAGE": "https://robbobfrh84-sample-auth.s3.amazonaws.com/verify.html",
+  "RESET_PAGE": "https://robbobfrh84-sample-auth.s3.amazonaws.com/resetPassword.html",
+  "IDENTITY_POOL_ID": "us-east-1:1c514981-eaf2-4428-a84a-5dca8591dc3c"
+}

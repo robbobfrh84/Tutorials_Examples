@@ -1,0 +1,57 @@
+AWS.config.region = 'us-east-1';
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: 'us-east-1:1c514981-eaf2-4428-a84a-5dca8591dc3c'
+});
+
+var lambda = new AWS.Lambda();
+
+function signup() {
+
+  var result = document.getElementById('result');
+  var username = document.getElementById('username');
+  var email = document.getElementById('email');
+  var password = document.getElementById('password');
+  var verifyPassword = document.getElementById('verify-password');
+
+  result.innerHTML = 'Sign Up...';
+
+	if (email.value == null || email.value == '') {
+  	result.innerHTML = 'Please specify your email address.';
+  } else if (username.value == null || username.value == '') {
+    result.innerHTML = 'Please specify a Username.';
+  } else if (password.value == null || password.value == '') {
+    result.innerHTML = 'Please specify a password.';
+  } else if (password.value != verifyPassword.value) {
+    result.innerHTML = 'Passwords are <b>different</b>, please check.';
+  } else {
+
+    var input = {
+      email: email.value,
+      username: username.value,
+      password: password.value,
+    };
+
+    lambda.invoke({
+      FunctionName: 'sampleAuthCreateUser',
+      Payload: JSON.stringify(input)
+    }, function(err, data) {
+      if (err) console.log(err, err.stack);
+      else {
+        var output = JSON.parse(data.Payload);
+        if (output.created) {
+          result.innerHTML = 'User ' + input.email + ' created. Please check your email to validate the user and enable login.';
+        } else {
+          console.log('bobnote: ', output)
+          result.innerHTML = 'User <b>not</b> created.';
+        }
+      }
+    });
+
+  }
+}
+
+var form = document.getElementById('signup-form');
+form.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  signup();
+});

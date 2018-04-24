@@ -1,5 +1,5 @@
-# Step-By-Step Guide to setting up an Lambda API with DDB and S3
-
+## Step-By-Step Guide to setting up an Lambda API with DDB and S3
+----
 Overview
 - 1) Create **DDB** table
 - 2) Create **lambda** Function
@@ -17,6 +17,7 @@ Overview
   - Role should have the default log access, keep as is, we'll add more later...
   - Name it: (example: whatever-func-role)
 - Paste this code....
+
 ```JavaScript
 var AWS = require('aws-sdk')
 var dynamodb = new AWS.DynamoDB()
@@ -37,6 +38,7 @@ exports.handler = (event, context, callback) => {
 
 }
 ```
+
 - Before moving one, find your ARN in the upper right and copy for later...
 
 3) Add DDB read permissions to for **Lambda** Role: `AWS` > `IAM`
