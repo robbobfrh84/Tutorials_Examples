@@ -5,7 +5,7 @@ AWS > Route 53
 - `[Create Hosted Zone]`
 - Domain Name: 'myWebSite.com'
 - `[Create]`
-- Copy 1-by-1 NS nameservers: `!NO ending '.'`
+- Copy 1-by-1 NS nameservers: `Include >...bob '.'`
 
 NameCheap > Dashboard > click on 'myWebSite.com'
 - In `> NAMESERVERS`

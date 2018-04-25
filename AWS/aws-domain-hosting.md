@@ -23,11 +23,11 @@ Add Name Servers
 - On the left-navbar click `Hosted Zone`
 - Click-> the domain name you’ve just added … whatever.com
 - Toggle `[ ]` (or just click) in the row that has the `Type` NS…
-- Copy all the NS (name servers) inside the Value input box. For Example... (emit last '.')
-  - `ns-1949.awsdns-51.co.uk`
-  - `ns-936.awsdns-53.net`
-  - `ns-1399.awsdns-46.org`
-  - `ns-199.awsdns-24.com`
+- Copy all the NS (name servers) inside the Value input box. For Example... (DO NOT emit last '.')
+  - `ns-1949.awsdns-51.co.uk.`
+  - `ns-936.awsdns-53.net.`
+  - `ns-1399.awsdns-46.org.`
+  - `ns-199.awsdns-24.com.`
 - **NOTE:** Those are **Not** the same NS code you need, get your own!
 
 ### Back to > namecheap.com
