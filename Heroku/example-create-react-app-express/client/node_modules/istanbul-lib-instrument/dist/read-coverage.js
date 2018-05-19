@@ -45,7 +45,7 @@ function readInitialCoverage(code) {
                 if (!magicValue.confident || magicValue.value !== _constants.MAGIC_VALUE) {
                     return;
                 }
-                covScope = path.scope.getFunctionParent() || path.scope.getProgramParent();
+                covScope = path.scope.getFunctionParent();
                 path.stop();
             }
         }

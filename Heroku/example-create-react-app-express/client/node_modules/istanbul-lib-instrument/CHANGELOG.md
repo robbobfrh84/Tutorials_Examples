@@ -3,42 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.10.1"></a>
-## [1.10.1](https://github.com/istanbuljs/istanbuljs/compare/istanbul-lib-instrument@1.10.0...istanbul-lib-instrument@1.10.1) (2018-03-09)
-
-
-### Bug Fixes
-
-* default value for ignorelassMethods ([#151](https://github.com/istanbuljs/istanbuljs/issues/151)) ([5dd88e8](https://github.com/istanbuljs/istanbuljs/commit/5dd88e8))
-
-
-
-
-<a name="1.10.0"></a>
-# [1.10.0](https://github.com/istanbuljs/istanbuljs/compare/istanbul-lib-instrument@1.9.2...istanbul-lib-instrument@1.10.0) (2018-03-04)
-
-
-### Features
-
-* allows an array of ignored method names to be provided ([#127](https://github.com/istanbuljs/istanbuljs/issues/127)) ([67918e2](https://github.com/istanbuljs/istanbuljs/commit/67918e2))
-
-
-
-
-<a name="1.9.2"></a>
-## [1.9.2](https://github.com/istanbuljs/istanbuljs/compare/istanbul-lib-instrument@1.9.1...istanbul-lib-instrument@1.9.2) (2018-02-13)
-
-
-### Bug Fixes
-
-* compatibility with babel 7 ([#135](https://github.com/istanbuljs/istanbuljs/issues/135)) ([6cac849](https://github.com/istanbuljs/istanbuljs/commit/6cac849))
-* handle instrumentation when a function is called Function ([#131](https://github.com/istanbuljs/istanbuljs/issues/131)) ([b12a07e](https://github.com/istanbuljs/istanbuljs/commit/b12a07e))
-* proper passing of the preserveComments option to babel ([#122](https://github.com/istanbuljs/istanbuljs/issues/122)) ([470bb0e](https://github.com/istanbuljs/istanbuljs/commit/470bb0e))
-* update instrument, account for lack of arrow expression ([#119](https://github.com/istanbuljs/istanbuljs/issues/119)) ([#125](https://github.com/istanbuljs/istanbuljs/issues/125)) ([0968206](https://github.com/istanbuljs/istanbuljs/commit/0968206))
-
-
-
-
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/istanbuljs/istanbuljs/compare/istanbul-lib-instrument@1.9.0...istanbul-lib-instrument@1.9.1) (2017-10-22)
 

@@ -54,17 +54,11 @@ inquirer
     if (gitStatus) {
       console.error(
         chalk.red(
-          'This git repository has untracked files or uncommitted changes:'
-        ) +
-          '\n\n' +
-          gitStatus
-            .split('\n')
-            .map(line => line.match(/ .*/g)[0].trim())
-            .join('\n') +
-          '\n\n' +
-          chalk.red(
+          `This git repository has untracked files or uncommitted changes:\n\n` +
+            gitStatus.split('\n').map(line => '  ' + line) +
+            '\n\n' +
             'Remove untracked files, stash or commit any changes, and try again.'
-          )
+        )
       );
       process.exit(1);
     }

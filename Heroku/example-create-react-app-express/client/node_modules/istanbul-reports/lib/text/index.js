@@ -5,7 +5,7 @@
 "use strict";
 
 var PCT_COLS = 9,
-    MISSING_COL = 18,
+    MISSING_COL = 15,
     TAB_SIZE = 1,
     DELIM = ' |',
     COL_DELIM = '-|';
@@ -108,7 +108,7 @@ function tableHeader(maxNameCols) {
     elements.push(formatPct('% Branch'));
     elements.push(formatPct('% Funcs'));
     elements.push(formatPct('% Lines'));
-    elements.push(formatPct('Uncovered Line #s', MISSING_COL));
+    elements.push(formatPct('Uncovered Lines', MISSING_COL));
     return elements.join(' |') + ' |';
 }
 
@@ -127,18 +127,16 @@ function missingBranches (node, colorizer) {
     return colorizer(formatPct(missingLines.join(','), MISSING_COL), 'medium');
 }
 
-function tableRow(node, context, colorizer, maxNameCols, level, skipEmpty) {
+function tableRow(node, context, colorizer, maxNameCols, level) {
     var name = nodeName(node),
         metrics = node.getCoverageSummary(),
-        isEmpty = metrics.isEmpty();
-    if (skipEmpty && isEmpty) { return ''; }
-    var mm = {
-            statements: isEmpty ? 0 : metrics.statements.pct,
-            branches: isEmpty ? 0 : metrics.branches.pct,
-            functions: isEmpty ? 0 : metrics.functions.pct,
-            lines: isEmpty ? 0 : metrics.lines.pct,
+        mm = {
+            statements: metrics.statements.pct,
+            branches: metrics.branches.pct,
+            functions: metrics.functions.pct,
+            lines: metrics.lines.pct,
         },
-        colorize = isEmpty ? function(str){ return str; } : function (str, key) {
+        colorize = function (str, key) {
             return colorizer(str, context.classForPercent(key, mm[key]));
         },
         elements = [];
@@ -161,7 +159,6 @@ function TextReport(opts) {
     this.file = opts.file || null;
     this.maxCols = opts.maxCols || 0;
     this.cw = null;
-    this.skipEmpty = opts.skipEmpty;
 }
 
 TextReport.prototype.onStart = function (root, context) {
@@ -185,8 +182,7 @@ TextReport.prototype.onStart = function (root, context) {
 
 TextReport.prototype.onSummary = function (node, context) {
     var nodeDepth = depthFor(node);
-    var row = tableRow(node, context, this.cw.colorize.bind(this.cw),this.nameWidth, nodeDepth, this.skipEmpty);
-    if (row) { this.cw.println(row); }
+    this.cw.println(tableRow(node, context, this.cw.colorize.bind(this.cw),this.nameWidth, nodeDepth));
 };
 
 TextReport.prototype.onDetail = function (node, context) {

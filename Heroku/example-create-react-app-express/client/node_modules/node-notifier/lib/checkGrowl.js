@@ -6,7 +6,7 @@ module.exports = function(growlConfig, cb) {
     cb = growlConfig;
     growlConfig = {};
   }
-  if (hasGrowl) return cb(null, hasGrowl);
+  if (hasGrowl) return cb(hasGrowl);
   var port = growlConfig.port || 23053;
   var host = growlConfig.host || 'localhost';
   var socket = net.connect(port, host);
@@ -14,11 +14,11 @@ module.exports = function(growlConfig, cb) {
 
   socket.on('connect', function() {
     socket.end();
-    cb(null, true);
+    cb(true);
   });
 
   socket.on('error', function() {
     socket.end();
-    cb(null, false);
+    cb(false);
   });
 };

@@ -7,7 +7,7 @@
 
 A node module to edit a string with a users preferred text editor using $VISUAL or $ENVIRONMENT.
 
-Version: 2.2.0
+Version: 2.0.5
 
 As of version 2.0.0, node 0.10 is no longer support. Minimum node version is now 0.12.
 
@@ -29,11 +29,8 @@ A full featured example
     
     try {
         var editor = new ExternalEditor();
-        var text = editor.run() // the text is also available in editor.text
-        
-        if (editor.last_exit_status !== 0) {
-            console.log("The editor exited with a non-zero code");
-        }
+        var text = editor.run()
+        // the text is also available in editor.text
     } catch (err) {
         if (err instanceOf ExternalEditor.CreateFileError) {
             console.log('Failed to create the temporary file');
@@ -103,7 +100,6 @@ A full featured example
 - `editor.args` (array) Default arguments for the bin
 - `temp_file` (string) Path to temporary file. Can be changed, but be careful as the temporary file probably already 
     exists and would need be removed manually.
-- `last_exit_status` (number) The last exit code emitted from the editor.
     
 ## Errors
 

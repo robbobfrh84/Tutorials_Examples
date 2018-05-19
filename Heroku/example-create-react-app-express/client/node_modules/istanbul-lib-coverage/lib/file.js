@@ -96,13 +96,6 @@ CoverageSummary.prototype.toJSON = function () {
     return this.data;
 };
 
-/**
- * return true if summary has no lines of code
- */
-CoverageSummary.prototype.isEmpty = function () {
-  return this.lines.total === 0;
-};
-
 // returns a data object that represents empty coverage
 function emptyCoverage(filePath) {
     return {
@@ -137,7 +130,7 @@ function assertValidObject(obj) {
  *
  * * `path` - the file path for which coverage is being tracked
  * * `statementMap` - map of statement locations keyed by statement index
- * * `fnMap` - map of function metadata keyed by function index
+ * * `functionMap` - map of function metadata keyed by function index
  * * `branchMap` - map of branch metadata keyed by branch index
  * * `s` - hit counts for statements
  * * `f` - hit count for functions

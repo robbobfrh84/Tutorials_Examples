@@ -1,7 +1,7 @@
 /*********************************************************************
  * NAN - Native Abstractions for Node.js
  *
- * Copyright (c) 2018 NAN contributors
+ * Copyright (c) 2017 NAN contributors
  *
  * MIT License <https://github.com/nodejs/nan/blob/master/LICENSE.md>
  ********************************************************************/
@@ -78,8 +78,7 @@ class JSON {
     return scope.Escape(parse(json_string));
 #else
     Nan::MaybeLocal<v8::Value> result;
-#if NODE_MODULE_VERSION >= NODE_0_12_MODULE_VERSION && \
-    NODE_MODULE_VERSION <= IOJS_2_0_MODULE_VERSION
+#if NODE_MODULE_VERSION == NODE_0_12_MODULE_VERSION
     result = v8::JSON::Parse(json_string);
 #else
 #if NODE_MODULE_VERSION > NODE_6_0_MODULE_VERSION
@@ -88,8 +87,7 @@ class JSON {
     v8::Isolate* context_or_isolate = v8::Isolate::GetCurrent();
 #endif  // NODE_MODULE_VERSION > NODE_6_0_MODULE_VERSION
     result = v8::JSON::Parse(context_or_isolate, json_string);
-#endif  // NODE_MODULE_VERSION >= NODE_0_12_MODULE_VERSION &&
-        // NODE_MODULE_VERSION <= IOJS_2_0_MODULE_VERSION
+#endif  // NODE_MODULE_VERSION == NODE_0_12_MODULE_VERSION
     if (result.IsEmpty()) return v8::Local<v8::Value>();
     return scope.Escape(result.ToLocalChecked());
 #endif  // NAN_JSON_H_NEED_PARSE
@@ -134,17 +132,14 @@ class JSON {
 #if NAN_JSON_H_NEED_PARSE
   inline v8::Local<v8::Value> parse(v8::Local<v8::Value> arg) {
     assert(!parse_cb_.IsEmpty() && "parse_cb_ is empty");
-    AsyncResource resource("nan:JSON.parse");
-    return parse_cb_.Call(1, &arg, &resource).FromMaybe(v8::Local<v8::Value>());
+    return parse_cb_.Call(1, &arg);
   }
 #endif  // NAN_JSON_H_NEED_PARSE
 
 #if NAN_JSON_H_NEED_STRINGIFY
   inline v8::Local<v8::Value> stringify(v8::Local<v8::Value> arg) {
     assert(!stringify_cb_.IsEmpty() && "stringify_cb_ is empty");
-    AsyncResource resource("nan:JSON.stringify");
-    return stringify_cb_.Call(1, &arg, &resource)
-        .FromMaybe(v8::Local<v8::Value>());
+    return stringify_cb_.Call(1, &arg);
   }
 
   inline v8::Local<v8::Value> stringify(v8::Local<v8::Value> arg,
@@ -156,9 +151,7 @@ class JSON {
       Nan::Null(),
       gap
     };
-    AsyncResource resource("nan:JSON.stringify");
-    return stringify_cb_.Call(3, argv, &resource)
-        .FromMaybe(v8::Local<v8::Value>());
+    return stringify_cb_.Call(3, argv);
   }
 #endif  // NAN_JSON_H_NEED_STRINGIFY
 };
