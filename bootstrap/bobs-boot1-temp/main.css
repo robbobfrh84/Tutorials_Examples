@@ -1,0 +1,50 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+/***Navbar Background Color, Border Removed ,Border Radius Sqaure***/
+.navbar {
+  background: cornflowerblue;
+  border-bottom: 4px solid rgba(255,255,255,0.6);
+}
+/***Link Color***/
+.navbar .navbar-nav > li > a {
+  color: white;
+}
+/***Link Color Hover Statr***/
+.navbar .navbar-nav > li > a:hover {
+  color: lightgray;
+}
+/***Navbar Brand Link Color***/
+.navbar .navbar-brand {
+  color: white;
+}
+/***Navbar Brand Link Color Hover State***/
+.navbar .navbar-brand:hover {
+  color: lightgray;
+}
+/***Link Background and Color Active State***/
+.navbar .navbar-nav > .active,
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus {
+  background: rgba(0,0,0,0.1);
+  color: linen;
+}
+/***Toggle Button***/
+.navbar .navbar-header .navbar-toggle {
+  border-color: rgba(255,255,255,0.3);
+}
+/***Toggle Button Hover and Focus State***/
+.navbar .navbar-header .navbar-toggle:hover,
+.navbar .navbar-header .navbar-toggle:focus {
+  background: rgba(255,255,255,0.3);
+  border-color: linen;
+}
+/***Collapse Borders***/
+.navbar .navbar-collapse {
+  border: none;
+}
