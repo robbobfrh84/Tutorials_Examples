@@ -1,16 +1,16 @@
-var _oldPage = 'page-home'
+var _oldPage = 'home'
 
 _page = (page)=>{
-  const newPage = document.getElementById(page)
+  const newPage = document.getElementById('page-'+page)
   try {
-    document.getElementById(_oldPage).style.display = 'none'
+    document.getElementById('page-'+_oldPage).style.display = 'none'
     newPage.style.display = 'block'
     window.location.hash = '#'+page
     _oldPage = page
   }
   catch(error) {
     alert(`
-      So... this "${page.split('-')[1]}" page doesn't exist. It may have,
+      So... this "${page}" page doesn't exist. It may have,
       it may will, or it's may never exist.
 
       What we're gonna do is send you back to the last page you
