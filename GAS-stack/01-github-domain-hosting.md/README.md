@@ -1,4 +1,4 @@
-# Guide: Use your custom domain for your github pages repository. 
+# Use your custom domain for your github pages repository. 
 Note: this tutorial will use namecheap.com for it's example domain register. However, it is not necessary to use namecheap and other registers' interfaces are similar. 
 
 ### Setting up on github
