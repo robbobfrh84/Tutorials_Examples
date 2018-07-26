@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Google Sheets DB </title>
+</head>
+<body>
+ <h2> Google Sheets BD </h2>
+ <h1>MY COOL BANDS!</h1>
+  <div id='myBands'></div>
+</body>
+</html>
+<script>
+// Empty URL Template > "https://spreadsheets.google.com/feeds/list/<Your Key Here>/od6/public/values?alt=json"
+var demo = "https://spreadsheets.google.com/feeds/list/1hD3oMGnG5mX2Wujgm13k8gGKsrID0NYfG80-69rQwwQ/od6/public/values?alt=json"
+
+_GET = (url, callback)=>{
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      console.log(xhr)
+      if (callback) callback(JSON.parse(xhr.responseText))
+    }
+  }
+  xhr.send(null)
+}
+
+_GET(demo, (data)=>{
+  data = data.feed.entry
+  console.log('data: ', data);
+  const myBands = document.getElementById("myBands")
+  for (const row of data) {
+    myBands.innerHTML += /*html*/`
+      <hr>
+      <h3> ${row.gsx$name.$t} </h3>
+      (${row.gsx$type.$t}) from <strong> ${row.gsx$city.$t} </strong>
+      <h3>${JSON.stringify(row.gsx$data.$t)}</h3>
+      <img src='${row.gsx$image.$t}'></img>
+    `
+  }
+})
+
+</script>
