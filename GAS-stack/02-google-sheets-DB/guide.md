@@ -1,5 +1,5 @@
 # Using Google Sheets as a Database 
-Checkout demo.html in this folder
+Checkout index.html in this folder
 Link to DB example: https://docs.google.com/spreadsheets/d/1hD3oMGnG5mX2Wujgm13k8gGKsrID0NYfG80-69rQwwQ/edit?usp=sharing
 
 ### Create the Sheet
