@@ -28,7 +28,7 @@ In your Dashboard on namecheap.com, find your domain name and click [manage].
   * They'll mess up re-routing procedures with Github. See 'Re-route errors' below,
 * Find the tab that says [Advanced DNS]
 
-![domain](domain.png)
+![domain](img/domain.png)
 
 * Now, you're going to add four `A Record`, Host: `@`, TTL: `automatic`
   * 185.199.108.153
@@ -44,7 +44,7 @@ Did it work?
 * Yes? Nice!
 * NO? You may have to wait a few min. However, double check that everything is trimmed and isolated to what is directed here. Compare to this photos. 
 
-![stuff](stuff.png)
+![stuff](img/stuff.png)
 
 ### Delays
 Delays may vary from region to region. In my experience, setting this up in Austin, TX, I was able to view my site live within a few minuets after setting up all the parts. 
@@ -54,5 +54,5 @@ Delays may vary from region to region. In my experience, setting this up in Aust
 ### Re-route errors:
 You may get an error telling you the page re-routed too man times. See the image included and check that you're not re-routing unnecessarily. If your register is showing something similar to the example provided, you may **need to remove** the page forwarding to fix the rerouting errors.  
 
-![rerout](reroute.png)
+![rerout](img/reroute.png)
 
