@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title id='tabTitle'> green </title>
+<link id='tabIcon' rel="shortcut icon" href="png256/green.png"/>
+<style>
+#svg {
+  background: url("patternLight.png");
+}
+</style>
+</head><body></body></html>
+<script src='colors.js'></script>
+<script>
+
+buildImage = (w = window.innerWidth, h = w/3.25)=>{
+
+  document.body.innerHTML = `
+
+  <svg id='svg' xmlns="http://www.w3.org/2000/svg" version="1.1" width="${w}" height="${h}" viewPort="0 0 256 256">
+    <defs>
+      <filter id="f1" x="-40%" y="-40%" height="400%" width="400%">
+        <feOffset result="offOut" in="SourceAlpha" dx="8" dy="8" />
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="8" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+      </filter>
+    </defs>
+    <g id='g'><g>
+
+  </svg>
+  `
+
+  const g = document.getElementById('g')
+
+  colors.map( (x, y) => {
+    // const xyRelief = 50
+    const cx = random(0, (w-100))
+    const cy = 4*y+20
+    console.log(h/141)
+
+    g.innerHTML += `
+    <text x="${cx}" y="${cy}" font-family="Verdana" font-size="18" fill='#888'>
+      ${x.name}
+    </text>
+    `
+
+  })
+
+  colors.map(x => {
+    const xyRelief = 50
+    const r = random(10,xyRelief-5)
+    const cx = random(xyRelief, (w-xyRelief))
+    const cy = random(xyRelief, (h-xyRelief))
+
+    g.innerHTML += `
+
+    <circle r="${r}" cx="${cx}" cy="${cy}" style="fill: ${x.name};" filter="url(#f1)" />
+
+    `
+
+  })
+
+}
+
+
+main = ()=>{
+  let color = colors[random(0, colors.length-1)]
+  document.getElementById('tabIcon').href = 'png256/'+color.name+'.png'
+  let tabTitle = document.getElementById('tabTitle')
+  color.name = color.name.charAt(0).toUpperCase() + color.name.slice(1);
+  tabTitle.innerHTML = color.name
+}
+
+random = (min, max)=>{
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+main()
+buildImage()
+
+</script>

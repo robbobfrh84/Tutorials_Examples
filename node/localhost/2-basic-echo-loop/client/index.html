@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en">
+<title> 2 Basic Echo Loop </title>
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2 id='fps'>fps: ...</h2>
+<h1 id='val'>Val: </h1>
+<button id='startStop'>START</button>
+
+</body>
+<script>
+
+const _example_url = 'http://192.168.1.85:8080/'
+let xhr = new XMLHttpRequest();
+let timeStamp = Date.now()
+let go = false
+let cnt = 0
+let cntArr =  []
+
+stream = function(){
+  xhr = new XMLHttpRequest();
+  xhr.open('GET', _example_url, true);
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        xhr.responseText = ''
+        val.textContent = 'Val: '+xhr.responseText
+        set_fps()
+        if (go) window.requestAnimationFrame(stream)
+      }
+    }
+  }
+  xhr.send(null)
+}
+
+startStop.onclick = function(){
+  stream()
+  go = !go
+  startStop.textContent = go ? "STOP" : "START"
+  cntArr = []
+}
+
+set_fps = function(){
+  if (cntArr.length > 25) {
+    const ave = cntArr.reduce((y,z)=>{return z+y})/cntArr.length
+    fps.textContent = 'fps: '+Math.floor(ave)
+    cntArr = []
+  } else {
+    currentTime = Date.now()
+    cntArr.push(Math.floor((1000/(currentTime-timeStamp))))
+    timeStamp = currentTime
+  }
+}
+
+</script>
+</html>

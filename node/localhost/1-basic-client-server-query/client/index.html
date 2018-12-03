@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en">
+<title> 1 Basic Client/Server Query </title>
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div style='font-size: 20px;'> HELLO! ...from static client </div>
+<hr>
+Initial Response: <div id='initialResponse'></div>
+<hr>
+
+?data= <input id='query' value='Hey-ooOOOoo'>
+<button id='btn1'>Send</button>
+<hr>
+<div id='queryResponse'></div>
+
+</body>
+<script>
+
+var _example_url = 'http://192.168.1.85:8080/'
+
+window.onload = ()=>{
+  _GET(_example_url)
+    .then(payload => initial_response(payload))
+    .catch(err => console.log('! Problem retrieving data !\n\n'+err))
+}
+
+btn1.onclick = function(){
+  _GET(_example_url+'?data='+query.value)
+    .then(payload => query_response(payload))
+}
+
+initial_response = (data)=>{ initialResponse.innerHTML = data }
+query_response = function(data){ queryResponse.innerHTML = data }
+
+_GET = (url)=>{
+  return new Promise((res, rej) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          console.log(xhr.responseText)
+          res(xhr.responseText)
+        } else {
+          rej(xhr)
+        }
+      }
+    }
+    xhr.send(null)
+  })
+}
+
+
+
+</script>
+</html>

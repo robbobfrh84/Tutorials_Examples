@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en">
+<title> 3 Basic Multi </title>
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<input id='inputName' placeholder='...enter name'>
+<button id='createUser'>Join</button>
+<hr>
+
+<div class="slidecontainer" id='mySlider'>
+  <span id="displayName"> Username: </span> | <span id="val"> Val: </span>
+  <input type="range" min="0" max="1023" value="500" class="slider" id="myRange">
+  <hr>
+</div>
+<div id="sliders"></div>
+
+</body>
+<script>
+
+const url = 'http://192.168.1.85:8080/'
+let xhr = new XMLHttpRequest();
+let userName = ''
+let value = ''
+
+window.onload = function(){
+  startTimerCheck()
+}
+
+createUser.onclick = function(){
+  userName = inputName.value
+  mySlider.style.display = 'block'
+  send(url+'?create='+myRange.value+'&'+userName, (data)=>{
+    displayName.innerHTML = ` Username: <h2> ${userName} </h2> `
+    val.innerHTML = ` Val: <h2> ${myRange.value} </h2>`
+  })
+}
+
+myRange.oninput = function(){
+  val.textContent = " Val: "+this.value
+  send(url+'?value='+this.value+'&'+userName)
+}
+
+function buildSlider(data, player){
+  sliders.innerHTML += `
+    <div class="slidecontainer" id="container-${player}">
+      <span id="displayName-${player}">${decodeURIComponent(player)}</span> |
+      <span id="val-${player}"> ${data[player].val} </span>
+      <input type="range" min="0" max="1023" value="${data[player].val}"
+      class="slider" id="myRange-${player}">
+    </div>
+  `
+}
+
+function startTimerCheck() {
+  setInterval(()=>{
+    send(url+'?update='+userName, function(data){
+      for (const player in data) {
+        if (!document.getElementById('myRange-'+player)
+        && data[player].status === 'active') {
+          buildSlider(data, player)
+        }
+        if (data[player].status === 'active') {
+          const slider = document.getElementById('myRange-'+player)
+          const val = document.getElementById('val-'+player)
+          val.textContent = data[player].val
+          slider.value = data[player].val
+        } else if (document.getElementById('myRange-'+player)){
+          const playerElm = document.getElementById('container-'+player)
+          sliders.removeChild(playerElm)
+        }
+      }
+    })
+  }, 20)
+}
+
+function send(url, callback){
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        if (callback) callback(JSON.parse(xhr.responseText))
+      }
+    }
+  }
+  xhr.send(null)
+}
+
+</script>
+</html>
