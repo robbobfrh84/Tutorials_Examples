@@ -14,17 +14,14 @@ http.createServer(function (req, res) {
 
   if (query) {
     console.log('query recieved')
-    handleReq(res, query)
+    var name = query.split('=')[1]
+    res.end("<h1> Hello"+name+"! You found Bob's Node Server!... Good For you!</h1>")
   } else {
     console.log('No request, send base html and .end()')
-    res.end(reply.innerHTML)
+    res.end("<h1> Hello From Bob's Node Server! </h1>")
   }
 
 }).listen(8080)
-
-var handleReq = function(res, query){
-  res.end('server recieved query: '+query)
-}
 
 // $ arp -a > lists all ports addresses available good for iphone test.
 // $ lsof -n -i4TCP:8080 // get list of 8080 port and use PID to replace 1303
