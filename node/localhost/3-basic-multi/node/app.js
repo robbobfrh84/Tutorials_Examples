@@ -4,6 +4,7 @@ var data = { users_count:0, users: {} }
 var clearDelay = 200;
 
 http.createServer(function (req, res) {
+  console.log('ok')
   res.writeHead(200, {
     'Content-Type': 'text/html',
     'Access-Control-Allow-Origin': req.headers.origin || true
@@ -26,6 +27,7 @@ http.createServer(function (req, res) {
 }).listen(8080)
 
 var handleReq = function(res, query){
+  console.log(res,query)
   const [ key, value ] = query.split('=')
   if (key === 'create') {
     const [ val, name ] = value.split('&')
