@@ -10,10 +10,11 @@ final code in action: https://dependable-glow-228521.appspot.com/
 
 To complete this walkthrough. You will need a gmail account, as well as activating your developer account at `console.cloud.google.com`. Also, You'll need to sign up for the free trail version to use the Google Cloud Platform. Yes, that means you'll need to put in a debt/credit card😕. Nothing in this tutorial should trigger your account to be charged ("i doubt"). But in case it does google's free trial gives you $300 of free credit for 12 months, in case you do find yourself with some unwanted/unknown traffic!
 
-Install NodeJS and OS appropriate Google Cloud SDK Software
-- NodeJS: https://nodejs.org/en/download/
-- Google Cloud SDK: https://cloud.google.com/sdk/docs/#install_the_latest_cloud_tools_version_cloudsdk_current_version
-  - Unzip file. Put folder in permanent place
+NodeJS: https://nodejs.org/en/download/
+
+### Install Google Cloud SDK Software
+Google Cloud SDK: https://cloud.google.com/sdk/docs/#install_the_latest_cloud_tools_version_cloudsdk_current_version
+ - Unzip file. Put folder in permanent place
     - I put mine in `Documents`
   - In Terminal: $`cd` to folder you unzipped your folder to and run...
   - $`./google-cloud-sdk/install.sh` > double check directory here if not working.
@@ -30,7 +31,7 @@ Install NodeJS and OS appropriate Google Cloud SDK Software
     - Enable Billing: click menu icon (top-left). And select billing.
       - Select enable billing for this project.
 
-Demo code Locally
+### Demo code Locally
 - If needed, here's clone this code to test with:
   - $`git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples`
   - $`cd nodejs-docs-samples/appengine/hello-world/standard`
@@ -38,13 +39,13 @@ Demo code Locally
   - $`npm start`
   - visit : "http://localhost:8080"
 
-Deploy:
+### Deploy:
 - $`gcloud app deploy`
   - Continue by selecting 'y' to confirm.
   - may need to also select region
 - If successful: try $`gcloud app browse` to open url in chrome.
 
-### The Skinny guide / Summery.
+# The Skinny guide / Summery.
 - Create project
 - Enable billing for project
 - Add cloud build api
