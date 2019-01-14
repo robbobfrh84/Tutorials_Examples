@@ -4,6 +4,7 @@ NOTE: This tutorial is done with a MAC, but other OS systems softwares needed ar
 - Please feel free to make contributions to this file/repo if you'd like to make this guide better for other developers.
 
 final code in action: https://dependable-glow-228521.appspot.com/
+- NOTE that I've added a little extra code beyond the basic "hello, World".
 
 ### Pre-work:
 
