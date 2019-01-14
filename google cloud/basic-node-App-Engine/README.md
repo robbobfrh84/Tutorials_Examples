@@ -24,12 +24,14 @@ Google Cloud SDK: https://cloud.google.com/sdk/docs/#install_the_latest_cloud_to
   - Then, $`cd` back to the folder you saved the unzipped folder before.
   - Now, initiate the SDK to your google profile by running $`./google-cloud-sdk/bin/gcloud init`
   - follow the link to log into your google account.
-  - Create a new project or select a project you've already created.
-    - NOTE: It may use one of the weird auto-generated names in addition to the name you created for it so select your project in the console.cloud.google.com to find out what it is.
-  - Go to "console.cloud.google.com" Select the project you created:
-    - Enable Cloud Build: Search "cloud build" and select "enable".
-    - Enable Billing: click menu icon (top-left). And select billing.
-      - Select enable billing for this project.
+
+### Create and Configue Project
+Create a new project or select a project you've already created.
+  - NOTE: It may use one of the weird auto-generated names in addition to the name you created for it so select your project in the console.cloud.google.com to find out what it is.
+Go to "console.cloud.google.com" Select the project you created:
+  - Enable Cloud Build: Search "cloud build" and select "enable".
+  - Enable Billing: click menu icon (top-left). And select billing.
+    - Select enable billing for this project.
 
 ### Demo code Locally
 - If needed, here's clone this code to test with:
