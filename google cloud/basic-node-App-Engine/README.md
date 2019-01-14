@@ -2,7 +2,6 @@
 
 NOTE: This tutorial is done with a MAC, but other OS systems softwares needed are included in the links. Mac Terminal command are similar to "$git bash" for windows.
 - Please feel free to make contributions to this file/repo if you'd like to make this guide better for other developers.
-Related Tutorial/walkthrough: https://github.com/robbobfrh84/Tutorials_Examples
 
 final code in action: https://dependable-glow-228521.appspot.com/
 
