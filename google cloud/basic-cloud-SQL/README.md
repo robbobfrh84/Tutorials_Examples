@@ -25,8 +25,8 @@ NOTE: This Walkthrough assumes you have a google developer account, have activat
 ----
 # Resources
 
-QuickStart: https://cloud.google.com/sql/docs/mysql/quickstart
+QUICKSTART: https://cloud.google.com/sql/docs/mysql/quickstart
+
+YOUTUBE MYSQL TERMINAL SETUP: https://www.youtube.com/watch?v=78itdGJpJAQ
 
 NEXT: https://cloud.google.com/sql/docs/mysql/connect-app-engine
-
-Youtube mysql Setup: https://www.youtube.com/watch?v=78itdGJpJAQ

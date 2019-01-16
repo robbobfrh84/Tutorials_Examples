@@ -112,13 +112,13 @@ Changes not staged for commit:
 	modified:   JS-built-in-examples/reduce.html
 	deleted:    error.html
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
+Untracked files: (use "git add <file>..." to include in what will be committed)
 
-	JS-built-in-examples/error.html
+	`JS-built-in-examples/error.html`
 
-```
+
 So, Lets add this changes by...
+
 - $ `git add *`
 - $ `git commit -m 'adding changed made during development of other projectg'`
 
