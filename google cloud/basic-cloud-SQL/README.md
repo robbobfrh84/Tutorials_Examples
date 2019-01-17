@@ -3,7 +3,7 @@
 NOTE: This Walkthrough assumes you have a google developer account, have activated billing, and installed the gcloud SDK for use in your mac Terminal or windows $git bash.
 
 ### Rough Overview.
-- Select project (Or: create new) and enabled api: https://console.cloud.google.com/flows/enableapi?apiid=sqladmin&redirect=https:%2F%2Fconsole.cloud.google.com&_ga=2.251493318.-1338182541.1545325673&_gac=1.20696010.1547422715.CjwKCAiA4OvhBRAjEiwAU2FoJXm3l_9JDimCKacrBfJp_xctV3cqQKD0WEUaVitDkqt5uHwN0hrsNhoCpPwQAvD_BwE
+- Select project (Or: create new) and [enabled api](https://console.cloud.google.com/flows/enableapi?apiid=sqladmin&redirect=https:%2F%2Fconsole.cloud.google.com&_ga=2.251493318.-1338182541.1545325673&_gac=1.20696010.1547422715.CjwKCAiA4OvhBRAjEiwAU2FoJXm3l_9JDimCKacrBfJp_xctV3cqQKD0WEUaVitDkqt5uHwN0hrsNhoCpPwQAvD_BwE):
 - Select Project and [Create Instance] for sql:
   - Select The hamburger `icon` in the upper left.
     - Select `SQL` > `Enable Billing` > `Set Account` > `Create instance`
@@ -25,7 +25,6 @@ Now, you have the option to use the mysql commandline within Terminal, or the bu
 
 Once within the "mysql>" commandline you can run any sql command for building db here. even add a .sql schema with mysql>`source schema.sql` (file included here) must be at directory before execution. See data mysql>`USE SE burgers_db;` mysql>`SELECT * FROM actors;`
 
-
 #### Using Google Clouds Shell Console
 - Select the [<] code icon in the blue navbar to open Google Cloud Shell
 - $`gcloud sql connect myinstance --user=root`
@@ -37,6 +36,20 @@ Once within the "mysql>" commandline you can run any sql command for building db
     INSERT INTO entries (guestName, content) values ("first guest", "I got here!");
     INSERT INTO entries (guestName, content) values ("second guest", "Me too!");`
 - $`SELECT * FROM entries;`
+
+### Modify with MySQL Workbench.
+Visit `console.google.cloud.com` and select your project. Find the hamburger icon in the upper-left and select `SQL` and then your instance.
+- Select the `connections` tab.
+- Scroll down under the Public IP section and select `[ + Add Network]`
+  - Add your name visit link to get your computer's ip address http://whatismyip.host/
+  - Add your IP address and remember to select `[save]`
+
+Open the MySQL Workbench and next to the "MySQL Connections"...
+- Select the "Plus" icon to add a new connection.
+- Add the name you selected for your SQL instance
+- In the google cloud platform under your instance copy the THE SQL INSTANCE (not your machine's ip)
+- Paste the ip address for the address in the workbench.
+- Now, attempt to connect to see the seed data you added before. Or abiously use this UI to create a schema and seed data. 
 
 ----
 # Resources
