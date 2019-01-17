@@ -25,8 +25,11 @@ NOTE: This Walkthrough assumes you have a google developer account, have activat
 ----
 # Resources
 
-QUICKSTART: https://cloud.google.com/sql/docs/mysql/quickstart
-
-YOUTUBE MYSQL TERMINAL SETUP: https://www.youtube.com/watch?v=78itdGJpJAQ
-
-NEXT: https://cloud.google.com/sql/docs/mysql/connect-app-engine
+- Youtube Setting up local command-line: 
+  - https://www.youtube.com/watch?v=78itdGJpJAQ
+- Intial Guide:
+  - https://cloud.google.com/sql/docs/mysql/quickstart
+- Creating a Google Cloud SQL instance for MySQL Workbench:
+  - http://grainier.net/connect-google-cloud-sql-with-mysql-workbench/
+- What's my IP address:
+  - http://whatismyip.host/

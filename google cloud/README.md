@@ -1,4 +1,4 @@
-INDEX:
+## $`gcloud` cli Notes:
 
 - $`gcloud info`
 - $`gcloud --help`
