@@ -19,7 +19,7 @@ Now, you have the option to use the mysql commandline within Terminal, or the bu
 - Select the project you just create. Select your project on the google console to find the strange id they give you. Use this id in next step
 - $`gcloud config set project <project-id>`
 - check to confirm your project was selected $`gcloud config list`
-- $`gcloud sql connect myinstance3 -u root`
+- $`gcloud beta sql connect myinstance3 -u root`
   - Enter Password
   - Answer 'y'
 
