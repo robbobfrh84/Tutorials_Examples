@@ -9,7 +9,7 @@ Confirm you installation was successful, execute this command.
 
 ### Installing Materialize
 
-Visit materialize website and download the Sass version of materialize. 
+Visit materialize website and download the Sass version of materialize.
 
 
 ----
