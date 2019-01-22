@@ -11,14 +11,42 @@ Run Local Instance:
 Run Google Cloud Instance:
 - $`gcloud beta sql connect <instance-name> -u root`
 
-Once Inside the "mysql>" command line
+Once Inside the "mysql>" command line(cli). CAPs are not required. In fact it's gonna be a lot easier in the cli if you just don't. But here we are for clarity.
 
 - mysql> `source schema.sql` to run an .sql file
-- mysql> `USE burgers_db;` to select a DB
-- mysql> `SELECT * FROM burgers;` to read all contents in table
-- mysql> `SHOW DATABASES;`
-- mysql> `SHOW TABLES;`
+- mysql> `SHOW DATABASES;` > shows all DBs
+- mysql> `USE some_db;` to select a DB
+- mysql> `SHOW TABLES;` > Shows all tables of selected DBs
+- mysql> `SELECT * FROM some_table;` to read all contents in table
 - mysql> `DROP DATABASE seinfeld;` removes a detabase
+- mysql> `SELECT USER()` < shows selected user
+- mysql> `SELECT DATABASE()` < shows selected database
+
+More:
+- mysql> `SELECT some_col FROM some_table` < only return specific column
+- mysql> `SELECT col_1, col_b FROM some_table` < only return specific columns
+
+
+### ORM (Object Relational Mapping) using NodeJS
+NOTE: See example_ORM.js for example methods.
+
+Return rows with specific values from select table.
+- STRING: "SELECT * FROM ?? WHERE ?? = ?"
+- Example Execution: `orm.selectWhere("some_table", "some_column", "some_value");`
+  - Example: `SELECT * FROM some_table WHERE some_column = "some_value"`
+    - ^ This will return the value of a column in a table if it exists. for multiple value cases... 👇
+  - Example: `SELECT * FROM some_table WHERE some_column = "some_value" OR some_column = "some_value"`
+
+Return order selection
+- STRING: "SELECT ?? FROM ?? ORDER BY ?? DESC"
+- Example Execution: `orm.selectAndOrder("some_col", "some_table", "some_other_col");`
+  - Example: `SELECT some_col FROM some_table ORDER BY some_other_col DESC`
+  - Swap `ASC` for `DESC` < will fip order and alphabetize too.
+
+Return value in a column(of one table) whose's row id is included in the most rows of a different table.
+- STRING: "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= buyer_name.id GROUP BY ?? ORDER BY count DESC LIMIT 1";"
+- Example Execution: `orm.findWhoHasMost("buyer_name", "buyer_id", "buyers", "pets");`
+  - Example: `SELECT buyer_name, COUNT(buyer_name) AS count FROM buyers LEFT JOIN pets ON pets.buyer_id = buyers.id GROUP BY buyer_name ORDER BY count DESC LIMIT 1;`
 
 ----
 ### MySQL local system locations.
@@ -58,3 +86,5 @@ FOR MySQL Workbench:
     - 8889: Open MAMP to run on this port. User is "root" pass is "root"(default) port is 8889.
 
 ----
+# References;
+- https://www.tutorialspoint.com/mysql/mysql-where-clause.htm
