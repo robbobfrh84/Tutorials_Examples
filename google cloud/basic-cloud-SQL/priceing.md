@@ -7,6 +7,7 @@ To change to a cheaper/testing option. Go go to your instance in the GC console 
 - Then find and click `Configure machine type and storage`
 - click `Change`
 - select the smallest type: `db-f1-micro` for a shared server use.
+- Don't forget to select [save] > It'll notify you that you'll need to retart your server.
 
 But honestly.... If you're just testing, you might as well "STOP" the database. You can always turn it back on if you want. 
 
