@@ -5,6 +5,8 @@ To get started, in Terminal... I ran $`mkrdir react-intro` to create the directo
 
 Create the react app skeleton/template code base.
 - $ `sudo npm install create-react-app`
+- you may need to install create-react-app cli > $`npm install -g create-react-app`
+  - This is install globally on your machine. 
 - $ `create-react-app my-app`
 - $ `cd my-app`
 - Open Project on localHost > $ `npm start`
