@@ -55,7 +55,7 @@ Go to "console.cloud.google.com" Select the project you created:
 
 ----
 
-RESOURCES & Citations:
+RESOURCES:
 
 - gcloud docs: https://cloud.google.com/sdk/gcloud/reference/projects/describe
 - google's quickstart guide: https://cloud.google.com/nodejs/getting-started/hello-world
