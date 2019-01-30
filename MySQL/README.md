@@ -13,12 +13,13 @@ Run Google Cloud Instance:
 
 Once Inside the "mysql>" command line(cli). CAPs are not required. In fact it's gonna be a lot easier in the cli if you just don't. But here we are for clarity.
 
-- mysql> `source schema.sql` to run an .sql file
+- mysql> `SOURCE schema.sql` to run schema.sql file
 - mysql> `SHOW DATABASES;` > shows all DBs
-- mysql> `USE some_db;` to select a DB
+- mysql> `USE <some_db>;` to select a DB
 - mysql> `SHOW TABLES;` > Shows all tables of selected DBs
-- mysql> `SELECT * FROM some_table;` to read all contents in table
-- mysql> `DROP DATABASE seinfeld;` removes a detabase
+- mysql> `SHOW COLUMNS FROMm <some_name>;`
+- mysql> `SELECT * FROM <some_name>;` to read all contents in table
+- mysql> `DROP DATABASE <some_db>;` removes a detabase
 - mysql> `SELECT USER()` < shows selected user
 - mysql> `SELECT DATABASE()` < shows selected database
 
