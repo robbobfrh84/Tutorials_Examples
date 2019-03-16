@@ -17,7 +17,8 @@ Once Inside the "mysql>" command line(cli). CAPs are not required. In fact it's 
 - mysql> `SHOW DATABASES;` > shows all DBs
 - mysql> `USE some_db;` to select a DB
 - mysql> `SHOW TABLES;` > Shows all tables of selected DBs
-- mysql> `SELECT * FROM some_table;` to read all contents in table
+- mysql> `SELECT * FROM some_table;` > to read all contents in table
+- mysql> `show columns from some_table;` to show a list of all columns in table.
 - mysql> `DROP DATABASE seinfeld;` removes a detabase
 - mysql> `SELECT USER()` < shows selected user
 - mysql> `SELECT DATABASE()` < shows selected database
