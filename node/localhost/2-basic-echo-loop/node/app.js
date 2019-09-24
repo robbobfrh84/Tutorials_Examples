@@ -7,7 +7,7 @@ http.createServer(function (req, res) {
     'Content-Type': 'text/html',
     'Access-Control-Allow-Origin': req.headers.origin || true
   })
-
+  console.log('cnt', cnt, req.headers)
   res.end(' '+cnt)
   cnt++
 
