@@ -1,0 +1,92 @@
+<html>
+  <style>
+    .btn {
+      background-color: cornflowerblue; 
+      color: white;
+    }
+    .active {
+      color: white;
+      background-color: blue; 
+    }
+  </style>
+<body>
+  <h1>  Pagination Example  </h1>
+
+  Total Results: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input id="resultsCount" value="17" style="width: 50px;"> <br>
+
+  Results Per Page: 
+  <input id="resultsPerPage" value="5" style="width: 50px;"> <br>
+
+  <button onclick="search()">Search</button>
+  <div id='searchResultsContainer'></div>
+  <div id='paginationContainer'></div>
+<script>
+
+let currentPage = 0
+let resultsPages = []
+
+function search(){
+  const searchResults = getSearchResults(resultsCount.value)
+  resultsPages = chunkResults(searchResults, parseInt(resultsPerPage.value))
+
+  console.log("searchResults", searchResults);
+  console.log("resultsPages", resultsPages);
+
+  displayResultsPage()
+  displayPagination()
+  
+}
+
+function getSearchResults(cnt) {
+  const arr = []
+  for (let i = 0; i < cnt; i++) {
+    arr.push("Search Result #"+(i+1))
+  } 
+  return arr
+}
+
+function chunkResults(arr, chunk){
+  const chunkedArr = []
+  for (let i = 0; i < arr.length; i+=chunk) {
+    chunkedArr.push(arr.slice(i, i+chunk-1))
+  }
+  return chunkedArr
+}
+
+function displayResultsPage() {
+  searchResultsContainer.innerHTML = ""  
+  resultsPages[currentPage].forEach(result => {    
+    searchResultsContainer.innerHTML += `
+      <div> ${result} </div>
+    `
+  })
+} 
+
+function displayPagination() {
+  const page = resultsPages.length
+  paginationContainer.innerHTML = ""    
+  for (let i = 0; i < page; i++) {
+    const active = i === currentPage ? 'active' : ''
+    paginationContainer.innerHTML += `
+      <button 
+        class='btn ${active}'
+        onclick='changePage(${i})'
+      > 
+        ${i+1} 
+      </button>
+    `
+  }    
+}
+
+function changePage(newPage) {
+  console.log("\n\nold Page: ", currentPage+1)
+  console.log("new Page: ", newPage+1)
+  currentPage = newPage
+  displayResultsPage()
+  displayPagination()
+}
+
+</script>
+</body>
+</html>
