@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/chipmonk.png">
+  <title id="tab_title"> url.app </title>
+  <!-- css -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+  <div id="spaBody"></div>
+</body>
+
+<script>
+
+window.onload = ()=>{
+
+  const spa =  new SPA({
+    _landingPage: "Home",
+    _data: { message: "🌚Hello, and welcom to 'Node Express Client and API'! 😎" },
+    _components: {
+      "Home"    :    new Home,
+    }
+  })
+
+}
+
+</script>
+<!-- js -->
+<script src='js/SPA.js'></script>
+<!-- pages -->
+<script src='pages/Home.js'></script>
+
+</html>
