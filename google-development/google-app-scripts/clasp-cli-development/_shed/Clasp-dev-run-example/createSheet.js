@@ -5,7 +5,7 @@ function createSpreadsheet(name) {
   var spreadsheet = Sheets.Spreadsheets.create(sheet);
 }
 
-var spreadsheetId = "1Vku81EurFewcNW7g22ICBlJKY-kopAfjlcEFXmvftwA" // found in sheet url
+var spreadsheetId = "1Zizyw_NATpqT6Nf_96JDbCoyykUb8KTh3RnY8Oscw-0" // found in sheet url
 // Example: https://docs.google.com/spreadsheets/d/1XVVZZFU67jjABnlN1BwolyitVGw69KPSoPj2_bTtMHI/edit#gid=0
 //👉 https://docs.google.com/spreadsheets/d/IDHERE/edit#gid=0
 
@@ -17,9 +17,9 @@ function read() {
   return result.values[0][0]
 }
 
-function write(param) {
+function write() {
   const cell = "A2"
-  var values = [[param]];
+  var values = [["HI from clasp!"]] // [[param]];
   var valueRange = Sheets.newValueRange();
   valueRange.values = values;
   var result = Sheets.Spreadsheets.Values.update(valueRange, spreadsheetId, cell, {

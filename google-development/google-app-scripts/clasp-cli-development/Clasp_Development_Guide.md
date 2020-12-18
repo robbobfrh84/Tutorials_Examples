@@ -1,7 +1,7 @@
 # Development with Google Apps Script CLI "Clasp"
 
 NOTE:
-* See: `/completed_walkthrough-12-2020` for a completed example.
+* See: `/clasp_completed_walkthrough-12-2020` for a completed example.
 * For a "skinny" guide: `quickstart.md` for a quick server & url api example
 
 ### Summery
@@ -151,22 +151,22 @@ You can code all you want in Google scripts the UI
 #### Running code with Arguments
 
 You must make your code into JSON format as one raw/string/object argument.
-* update the code to set a parameter.
+* Add this function to code.js to set a parameter.
   ```javascript
-  function gasTest(param){
+  function paramExplore(param){
     console.log("from logs: ", param) // user Logger.log for UI logs *see above
     return "Your argument was... 👉 " + param
   }
   ```
 * Update code ... $`clasp push`
-* String: $`clasp run gasTest -p '"hello"'` > hello!
-* Number: $`clasp run gasTest -p '32'` > 32
-* Object: $`clasp run gasTest -p '{"string":"hello","number":32}'` > [object Object]
+* String: $`clasp run paramExplore -p '"hello"'` > hello!
+* Number: $`clasp run paramExplore -p '32'` > 32
+* Object: $`clasp run paramExplore -p '{"string":"hello","number":32}'` > [object Object]
   * `return param.string` > hello
-* Array: $`clasp run gasTest -p '[[4,5,6,7]]'` > 4,5,6,7
+* Array: $`clasp run paramExplore -p '[[4,5,6,7]]'` > 4,5,6,7
   * `return param[2]` > 6
-* Multi: $`clasp run gasTest -p '["A string", "32"]'`
-  * `function gasTest(p1,p2) {return p1+' '+p2}` > A String 32
+* Multi: $`clasp run paramExplore2 -p '["A string", "32"]'`
+  * `function paramExplore2(p1,p2) {return p1+' '+p2}` > A String 32
 
 
 ----
@@ -175,11 +175,12 @@ You must make your code into JSON format as one raw/string/object argument.
 #### Add `createSheet.js` code
 * $`touch createSheets.js`
   ```javascript
-  function createSpreadSheet(param) {
+  function createSpreadsheet(name) {
     var sheet = Sheets.newSpreadsheet();
     sheet.properties = Sheets.newSpreadsheetProperties();
-    sheet.properties.title = "OK lets go";
+    sheet.properties.title = name;
     var spreadsheet = Sheets.Spreadsheets.create(sheet);
+    return "Created new sheet: "+name
   }
   ```
 * $`clasp push`
@@ -190,16 +191,6 @@ You must make your code into JSON format as one raw/string/object argument.
 * Find & click **+ Enable APIs and Serves**
 * If you just search "sheets", it'll filter to **Google Sheets API**
 * Select and **{Enable}**
-
-<!-- * $`clasp run createSpreadSheet -p '"my new sheet"'`
-  * You'll get an alert that you need to add scopes from script url.
-  * Copy paste scopes form script
-* $`clasp pull` -->
-🙃
-🙃
-🙃
-
-
 * $`clasp pull`
 * Now, add oauth scope to `appsscript.json` at the end.
   ```JSON
@@ -213,7 +204,7 @@ You must make your code into JSON format as one raw/string/object argument.
 Now try: $`clasp run createSpreadsheet -p '"my new sheet"'`
 * Go to http://sheets.google.com > find your sheet!
 
-For Read and Write code to sheet, see `sheets.js` in`/completed_walkthrough...`
+For Read and Write code to sheet, see `createSheets.js` in`/completed_walkthrough...`
   * Add something to A1 to test... > "HEEEELLLOOO"
   * `clasp run read` > HEEEELLLOOO
   * `clasp run write -p '"World"'`
@@ -285,26 +276,26 @@ Sometime, you'll really be pushing and deploying at the same time, same version.
 
 #### Create new file and add a GET request
 * $`touch get.js` and add this code...
-```javascript
-function doGet(e) {
-  const pie = JSON.stringify({
-    pie: Math.PI,
-    radius: parseInt(e.parameter.r),
-    circumference: (e.parameter.r * Math.PI) * 2
-  })
-  return ContentService.createTextOutput(pie).setMimeType(ContentService.MimeType.JSON)
-}
-function testGet(){
-  return doGet({parameter:{r:23}}).getContent()
-}
-```
+  ```javascript
+  function doGet(e) {
+    const pie = JSON.stringify({
+      pie: Math.PI,
+      radius: parseInt(e.parameter.r),
+      circumference: (e.parameter.r * Math.PI) * 2
+    })
+    return ContentService.createTextOutput(pie).setMimeType(ContentService.MimeType.JSON)
+  }
+  function testGet(){
+    return doGet({parameter:{r:23}}).getContent()
+  }
+  ```
 * $`clasp push`
 * $`clasp run testGet` > response as object with circumference of circle!
 
 #### Run with your URL!
 * Update the deployment: `clasp deploy` OR `clasp version 1 redeploy`
 * Using the URL you got from above, just add `/r=23` to the end.
-* example: https://script.google.com/macros/s/AKfycbxvODgI6BmxYjdDKWEj-mrbaXHWUD_AklE7SoqGjr2S/exec?r=23
+* example: https://script.google.com/macros/s/AKfycbwEv-cd0TJWHe1KhuBChvkvf_3cDwoIjdEy64o2R1U/exec?r=23
 * should see your api response in the browser!
 
 
