@@ -1,0 +1,36 @@
+{
+  "name": "appengine-analytics",
+  "description": "Sample for Google Analytics Measurement Protocol on Google App Engine.",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "system-test": "repo-tools test app",
+    "test": "npm run system-test"
+  },
+  "dependencies": {
+    "express": "4.16.4",
+    "got": "9.5.0"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.0.0"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "Event tracked."
+      }
+    },
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}

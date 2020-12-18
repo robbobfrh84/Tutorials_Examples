@@ -1,0 +1,40 @@
+{
+  "name": "appengine-standard-getting-started-build-apps",
+  "version": "0.0.1",
+  "description": "Node.js getting started sample for building an app on App Engine standard environment.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "gcloud app deploy",
+    "test": "repo-tools test app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "author": "Google Inc.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "3.1.0",
+    "ava": "0.25.0"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": false,
+    "requiresProjectId": false,
+    "test": {
+      "app": {
+        "args": [
+          "server.js"
+        ],
+        "msg": "Hello from App Engine!"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "nodejs-docs-samples-functions-hello-world",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "e2e-test": "export FUNCTIONS_CMD='gcloud functions' && sh test/updateFunctions.sh && BASE_URL=\"https://$GCP_REGION-$GCLOUD_PROJECT.cloudfunctions.net/\" ava -T 20s --verbose test/*.test.js",
+    "test": "export FUNCTIONS_CMD='functions-emulator' && sh test/updateFunctions.sh && export BASE_URL=\"http://localhost:8010/$GCLOUD_PROJECT/$GCF_REGION\" && ava -T 20s --verbose -c 1 test/index.test.js",
+    "system-test": "export FUNCTIONS_CMD='functions-emulator' && sh test/updateFunctions.sh && export BASE_URL=\"http://localhost:8010/$GCLOUD_PROJECT/$GCF_REGION\" && ava -T 20s --verbose test/*.test.js"
+  },
+  "dependencies": {
+    "@google-cloud/debug-agent": "^3.0.0",
+    "escape-html": "^1.0.3",
+    "pug": "^2.0.3",
+    "safe-buffer": "^5.1.2"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.0.0",
+    "@google-cloud/pubsub": "^0.22.0",
+    "@google-cloud/storage": "^2.0.0",
+    "ava": "^0.25.0",
+    "express": "^4.16.3",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.0.0",
+    "supertest": "^3.0.0",
+    "uuid": "^3.1.0",
+    "yargs": "^12.0.0"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true,
+    "requiredEnvVars": [
+      "BASE_URL",
+      "GCLOUD_PROJECT",
+      "GCF_REGION",
+      "FUNCTIONS_TOPIC",
+      "FUNCTIONS_BUCKET",
+      "FUNCTIONS_CMD"
+    ]
+  }
+}

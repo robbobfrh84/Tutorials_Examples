@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-docs-samples-functions-imagemagick",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "test": "ava -T 20s --verbose test/*.test.js"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^2.3.3",
+    "@google-cloud/vision": "^0.24.0",
+    "gm": "^1.23.1"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.0.0",
+    "ava": "^0.25.0",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.0.0"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}
