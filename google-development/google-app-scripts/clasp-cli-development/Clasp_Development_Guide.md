@@ -43,6 +43,7 @@ NOTE:
   - This action creates `appscript.json` file in your folder, And GAS link
 
 #### Add code locally and push for testing in browser
+* $`clasp open`
 * $`clasp pull` > Will pull down the `code.js` form link
 * add 👇 to "Code.js" file after pull.
   ```javascript
@@ -75,9 +76,6 @@ NOTE:
   * **User type** Select **[x] External**: You want the WWW to be able to access this.
   * **{CREATE}**
 * **App name**: "clasp-dev-run-example"
-<!--  -->
-* 🔥🔥🔥 ... Looks like this has changed...
-<!--  -->
 * **User support email**: your gmail email...
 * Leave no-required empty,
 * ...Scroll to **Developer contact information**: your gmail email...
