@@ -8,5 +8,8 @@
     "start": "electron ."
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "electron-prebuilt": "^1.4.13"
+  }
 }
