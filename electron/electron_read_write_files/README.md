@@ -1,9 +1,3 @@
-# To Do... 🔥
-- 🔥 Finish documenting readme.
-- Create a folder called Electron in Tutorials_Examples called electron and add this example.
-- Remove To Do... section here
-
-
 # Getting started with electron, read and write files.
 
 ### Setting Up
