@@ -1,0 +1,6 @@
+Hello,
+
+This is some text from
+the file named file_to_read.txt!
+
+! Cool, right? !

@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en">
+<title> Read & Write Example </title>
+
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style media="screen">
+    * {
+      margin: 3px;
+    }
+    body {
+      background-color: #bbb;
+      padding-right: 10px;
+    }
+    div {
+      width: 60px;
+      display: inline-block;
+      margin-left: 0px;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      border: 1px solid #777;
+      padding: 2px;
+    }
+    .textBox {
+      background-color: #ddd;
+      padding: 5px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1> Programatically read & write files with electron </h1>
+  <hr>
+  Add to <strong>file_to_write.csv.js</strong>
+  <br><div>Name:</div><input id="inputName" value="Jessy Sow"/>
+  <br><div>Number:</div><input id="inputNumber" value="33"/>
+  <br><button onClick="writeFileExample()"> Add to .csv file </button>
+  <hr>
+  file_to_write.csv
+  <div id="writeFileText" class="textBox"></div>
+</body>
+
+<script src="./client/handle_client_dependancies.js"></script>
+<script src="./read_file.js"></script>
+<script src="./write_file.js"></script>
+<script src="./client/client_start.js"></script>
+
+</script>
+</html>
