@@ -1,0 +1,12 @@
+{
+  "name": "3d_box",
+  "version": "1.0.0",
+  "description": "# Resources Good guide for learning three.js fundaments... - https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC"
+}
