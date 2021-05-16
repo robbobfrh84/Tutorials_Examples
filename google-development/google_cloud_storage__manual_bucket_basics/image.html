@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en">
+<title> Google Cloud Storage: Manual Bucket Basics </title>
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .video-js {
+    width: 600px;
+    height: 600px;
+  }
+</style>
+</head>
+
+<body>
+
+  <h1> Google Cloud Storage: Manual Bucket Basics </h1>
+
+  <a target="_default" href="https://console.cloud.google.com/storage/browser/bobs_example_bucket1;tab=objects?forceOnBucketsSortingFiltering=false&project=cloud-storage-basics&prefix=&forceOnObjectsSortingFiltering=false">
+    ↗️ Google Cloud Storage Bucket ↗️
+  </a><br>
+
+  <div> bob8x8.png </div>
+  <img
+    width="200px"
+    src="https://storage.googleapis.com/bobs_example_bucket1/test_folder_1/bob8x8.png"
+    alt="bob8x8"
+  ><br>
+
+  <div> object.json </div>
+  <textarea id="jsonData" rows="5" cols="50"></textarea><br><br>
+
+  <div> bobs_example_bucket1/object.json </div>
+  <textarea id="jsonData2" rows="6" cols="50"></textarea><br><br>
+
+  <div> bobvid.mkv </div>
+
+  <video width="600" height="400" controls>
+    <source
+      src="https://storage.googleapis.com/bobs_example_bucket1/bobvid.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+</body>
+
+<script>
+
+window.onload = function() {
+
+  getData(
+    "jsonData",
+    "https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/object.json?alt=media"
+  )
+  getData(
+    "jsonData2",
+    "https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/test_folder_1%2Fdemo.json?alt=media"
+  )
+
+}
+
+function getData(id, url) {
+  fetch(url)
+    .then( res => res.json() )
+    .then( data => {
+      console.log("data :", data)
+      window[id].innerHTML = JSON.stringify(data, null, 2)
+    })
+    .catch( err => console.log('err', err))
+    .finally( () => console.log('...end of fetch') )
+}
+
+</script>
+</html>
