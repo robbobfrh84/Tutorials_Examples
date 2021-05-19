@@ -32,6 +32,8 @@
   <div> bobs_example_bucket1/object.json </div>
   <textarea id="jsonData2" rows="6" cols="50"></textarea><br><br>
 
+  <div id="bucketObects"> All Objects in bucket </div> <br> <br>
+
   <div> bobvid.mkv </div>
 
   <video width="600" height="400" controls>
@@ -48,26 +50,35 @@
 window.onload = function() {
 
   getData(
-    "jsonData",
-    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/object.json?alt=media"
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/object.json?alt=media",
+    (data)=>{ window.jsonData.innerHTML = JSON.stringify(data, null, 2) }
   )
   getData(
-    "jsonData2",
-    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/test_folder_1%2Fdemo.json?alt=media"
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/test_folder_1%2Fdemo.json?alt=media",
+    (data)=>{ window.jsonData2.innerHTML = JSON.stringify(data, null, 2) }
+
   )
   getData(
-    "jsonData2",
-    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/test_folder_1"
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o",
+    (data)=>{
+      data.items.forEach( item =>{
+        console.log("item :", item.name)
+        window.bucketObects.innerHTML += `
+          <li> ${item.name}</li>
+        `
+      })
+    }
+
   )
 
 }
 
-function getData(id, url) {
+function getData(url, callback) {
   fetch(url)
     .then( res => res.json() )
     .then( data => {
       console.log("data :", data)
-      window[id].innerHTML = JSON.stringify(data, null, 2)
+      if (callback) callback(data)
     })
     .catch( err => console.log('err', err))
     .finally( () => console.log('...end of fetch') )
