@@ -19,7 +19,7 @@ I needed to convert `.mkv` files to `.mp4` with `h.264` codec
   - Set **Video Output** to "Mpeg4 AVC (x264)"
   - Set **Audio Output** to "Copy"
   - Set **Output Format** "MKV Muxer"
-- Then, uploaded the new `.mkv` video to the google bucket. 
+- Then, uploaded the new `.mkv` video to the google bucket.
 
 My Example Project Links (maybe removed to clear up space):
 - Project: https://console.cloud.google.com/getting-started?project=cloud-storage-basics
@@ -50,7 +50,11 @@ Guide JSON API: https://cloud.google.com/storage/docs/json_api
     - Bucket I created Link: https://console.cloud.google.com/storage/browser/bobs_example_bucket1
 
 - Yep... just a file system.
-- See guide link for editing permissions. Need to do it at bucket level first.
+- Enable allUser permission: *Select Bucket* > *Permissoins* tab
+  - Select "[+] Add" Button
+  - In "New Members" input, Type "allUsers" and select
+  - In "Select a Role" Dropdown, find "Cloud Storage" > "Storage Object View"
+- Create Folder upload files etc... etc...
 
 ### Adding some stuff
 

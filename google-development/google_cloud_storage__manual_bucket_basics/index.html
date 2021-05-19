@@ -15,14 +15,14 @@
 
   <h1> Google Cloud Storage: Manual Bucket Basics </h1>
 
-  <a target="_default" href="https://console.cloud.google.com/storage/browser/bobs_example_bucket1;tab=objects?forceOnBucketsSortingFiltering=false&project=cloud-storage-basics&prefix=&forceOnObjectsSortingFiltering=false">
+  <a target="_default" href="https://console.cloud.google.com/storage/browser/bobs_test_bucket;tab=objects?forceOnBucketsSortingFiltering=false&project=cloud-storage-314216&prefix=&forceOnObjectsSortingFiltering=false">
     ↗️ Google Cloud Storage Bucket ↗️
   </a><br>
 
   <div> bob8x8.png </div>
   <img
     width="200px"
-    src="https://storage.googleapis.com/bobs_example_bucket1/test_folder_1/bob8x8.png"
+    src="https://storage.googleapis.com/bobs_test_bucket/test_folder_1/bob8x8.png"
     alt="bob8x8"
   ><br>
 
@@ -36,7 +36,7 @@
 
   <video width="600" height="400" controls>
     <source
-      src="https://storage.googleapis.com/bobs_example_bucket1/bobvid.mp4"
+      src="https://storage.googleapis.com/bobs_test_bucket/bobvid.mp4"
       type="video/mp4"
     >
   </video>
@@ -49,11 +49,15 @@ window.onload = function() {
 
   getData(
     "jsonData",
-    "https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/object.json?alt=media"
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/object.json?alt=media"
   )
   getData(
     "jsonData2",
-    "https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/test_folder_1%2Fdemo.json?alt=media"
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/test_folder_1%2Fdemo.json?alt=media"
+  )
+  getData(
+    "jsonData2",
+    "https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/test_folder_1"
   )
 
 }
