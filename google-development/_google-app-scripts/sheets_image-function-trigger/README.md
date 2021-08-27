@@ -22,6 +22,7 @@ Let's import an image into a google sheet and make it a button! And, when clicke
 ### Authorize
 Back in the sheet, clicking image the first time will ask for authorization. Don't be deterred, it's your app 😉.
 - Log in, click _advanced_ and continue to _unsafe_.
+
 ![authorization example](https://github.com/robbobfrh84/Tutorials_Examples/blob/master/google-development/_google-app-scripts/assets/gifs/authorization.gif)
 
 ### That's it! Click the image and see the action! Sky is the limit!
