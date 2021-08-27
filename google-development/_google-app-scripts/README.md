@@ -1,5 +1,5 @@
-## Google Apps Scripts Guides and Examples
-The folders found here all give basic Google Apps Scripts examples, and provide the code to replicate the process on your own.
+## Google Apps Script Guides and Examples
+The folders found here all give basic Google Apps Script examples, and provide the code to replicate the process on your own.
 
 Some Examples....
 - [Sheets: Images Function Trigger](https://github.com/robbobfrh84/Tutorials_Examples/tree/master/google-development/_google-app-scripts/sheets_image-function-trigger)
