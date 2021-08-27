@@ -20,4 +20,4 @@ function onEdit(e) {
 - Also, you can copy the following [google sheet](https://docs.google.com/spreadsheets/d/1tvy9rdwnP61W2dq4NgyWc5OhbNOIiX8AElDoGTmgtfQ/edit#gid=0) to test without creating your own.
 
 ### Questions?
-- See 👉 [example tweet & discussion](< TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨TO DO 🚨>). And, feel free to reach out to **here** or **@bobmain49** on twitter.
+- See 👉 [example tweet & discussion](https://twitter.com/BobMain49/status/1431402570417848320). And, feel free to reach out to **here** or **@bobmain49** on twitter.
