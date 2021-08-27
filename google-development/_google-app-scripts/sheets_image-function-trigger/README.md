@@ -26,6 +26,7 @@ Back in the sheet, clicking image the first time will ask for authorization. Don
 ### That's it! Click the image and see the action! Sky is the limit!
 For more examples, copy the following sheet and open the **Script Editor** to see some other small.
 - Link: https://docs.google.com/spreadsheets/d/1roA0oi6djVpbMxe8G-IV2e6CgWrlPrufyihtXLss_pA/edit?usp=sharing
+- Or, see `code.js` in this folder
 
 ### Questions?
 - See 👉 [example tweet & discussion](https://twitter.com/BobMain49/status/1430339003803488256). And, feel free to reach out to **here** or **@bobmain49** on twitter.
