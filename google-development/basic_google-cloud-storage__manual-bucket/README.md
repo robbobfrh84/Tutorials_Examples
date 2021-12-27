@@ -26,8 +26,10 @@ My Example Project Links (maybe removed to clear up space):
 - Storage: https://console.cloud.google.com/storage/browser?project=cloud-storage-basics&prefix=
 - Example bob8x8.png url: https://storage.googleapis.com/bobs_example_bucket1/test_folder_1/bob8x8.png
 
-- Example object.json url (different then JS fetch url): https://storage.googleapis.com/bobs_example_bucket1/object.json
-- Example download .json url (Works in JS fetch): https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/object.json?alt=media
+
+### 🔥 .fetch from client side url and direct url
+- Example object.json url (different then JS fetch url): https://storage.googleapis.com/bobs_test_bucket/object.json
+- Example download .json url (Works in JS fetch): https://storage.googleapis.com/storage/v1/b/bobs_test_bucket/o/object.json?alt=media
 
 
 - Example download .json url EMBEDED folder (Works in JS fetch): https://storage.googleapis.com/storage/v1/b/bobs_example_bucket1/o/test_folder_1%2Fdemo.json?alt=media
