@@ -1,8 +1,8 @@
-# Use your custom domain for your github pages repository.
-Note: this tutorial will use namecheap.com for it's example domain register. However, it is not necessary to use namecheap and other registers' interfaces are similar.
+# Use your custom domain for your GitHub Pages repository.
+Note: This tutorial will use namecheap.com as an example domain registrar. However, it is not necessary to use namecheap, as other registrars have similar interfaces.
 
-### Setting up on github
-Lets start out by saying you already got a github repository ready to host. No? start a new one and put the index.html file (found in this folder) in your repository and push those changes to get somethin' goin'.
+### Setting up on GitHub
+Let's start by assuming you already have a GitHub repository ready to host. No? Start a new one and place the index.html file (found in this folder) in your repository. Push those changes to get something going.
 
 Select your repository and find the **settings** ⚙ Icon. 
 * Scroll down until you find the **GitHub Pages** Section
