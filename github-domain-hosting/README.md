@@ -33,9 +33,10 @@ Find the tab that says **Advanced DNS**.
 
 ![domain](img/domain.png)
 
-Now, you're going to add four `A Record` entries:
-- Host: `@`
-- TTL: `automatic`
+Now, you're going to add **four** `A Record` entries:
+- for `Host` select `@` for all
+- for `TTL` select `automatic` for all
+- for `value` use each of these numbers:
   - 185.199.108.153
   - 185.199.109.153
   - 185.199.110.153
