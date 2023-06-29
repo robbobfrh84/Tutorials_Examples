@@ -45,14 +45,11 @@ Now, you're going to add **four** `A Record` entries:
 Also, add **YOUR** GitHub username with the `github.io` extension.
 - Example: `robbobfrh84.github.io`
 
+Your entries should look something like this...
+![stuff](img/stuff.png)
+
 Save them all! And...
 Checkout your `example.com` in the browser!
-
-Did it work?
-- Yes? Nice!
-- NO? You may have to wait a few minutes. However, double-check that everything is trimmed and isolated to what is directed here. Compare to these photos.
-
-![stuff](img/stuff.png)
 
 ## Delays
 
