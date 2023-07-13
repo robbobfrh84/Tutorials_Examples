@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Async </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style media="screen">
+  .code {
+    background-color: rgba(174,167,167,0.5);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  body {
+    font-family: avenir;
+    font-size: 20px;
+  }
+</style>
+</head>
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/map.html">Map</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/filter.html">Filter</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/reduce.html">Reduce</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/error.html">Error</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/promise.html">Promise</a> ::
+  <a style='color: firebrick' href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/async.html"> Async </a> ::
+  <h3> Async Funtions </h3>
+  <li>  <em>...*See Console for code results and .html file for source code.</em> </li>
+  <button onClick="go()"> Simulate Async Function </button>
+  <div id='async'></div>
+<script>
+
+var div = document.getElementById('async')
+
+funcA = (value)=>{
+  div.innerHTML += '<br> ... Requsting Data from funcA: '+value
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(value+'/A'), 1000)
+  })
+}
+
+funcB = (value)=>{
+  div.innerHTML += `<br>Data Returned: ${value}<br>...Requsting Data from funcB`
+  const chanceErr = Math.round(Math.random())
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      chanceErr ? reject('!Chance Error in funcB') : resolve(value+'/B')
+    }, 1000)
+  })
+}
+
+funcC = (value)=>{
+  div.innerHTML += `<br>Data Returned: ${value}<br>...Requsting Data from funcC`
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(value+'/C'), 1000)
+  })
+}
+
+async function startAsync() {
+  return await funcA('hello')
+}
+
+// NOTE: ⚠️ This demostrates Async funcs, but you can remove it and just go to
+// funcA('hello') direct by replacing that funcA call with startAsync
+go = ()=>{
+  div.innerHTML = ''
+  startAsync()
+    .then(x => funcB(x))
+    .then(x => funcC(x))
+    .then(x => div.innerHTML += ` -> 👍 Success! here's your data: `+x)
+    .catch(err => {
+      console.error(err)
+      div.innerHTML += ` -> 🚨 ${err} 🚨 (try again)`
+    })
+}
+
+
+
+</script>
+</html>

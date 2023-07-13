@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title> Bind Call Apply </title>
+</head>
+<body> See console! </body>
+<li> .bind(): returns function</li>
+<li> .apply() and .call(): execute Function </li>
+<script type="text/javascript">
+
+// BIND EXAMPLE: obj.method.bind(obj)
+var person = {
+  name: "Jeff",
+  sayHi: function() {
+    console.log("Hi, I'm " + this.name);
+    console.log(this);
+  }
+};
+
+person.sayHi();
+console.log('\n')
+
+setTimeout(person.sayHi, 2000);
+setTimeout(person.sayHi.bind(person), 3000);
+
+
+// APPLY EXAMPLE someClass.call(this, var1, var2)
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+  this.rating = 4
+}
+
+function Food(name, price) {
+  Product.apply(this, [name, price]); // We're gonna use the class/contructor "Product" to build all OUR vars.
+  this.category = 'food';
+}
+
+var food = new Food('cheese', 5)
+console.log(food)
+
+console.log('\n')
+
+// APPLY EXAMPLE: myFunc.apply(obj, array) REAAALLLYYYY This is just like call, save for ONE argument as array.
+var owen = {
+  name: "Owen"
+}
+
+function sayTo(first, second){
+  console.log(this);
+  return first + " " + this.name + " " + second;
+}
+console.log(sayTo('Clive','Clusterson'))
+
+sayTo.apply(owen, ["Hi", "how are you?"])
+
+console.log('\n')
+
+
+</script>
+</html>

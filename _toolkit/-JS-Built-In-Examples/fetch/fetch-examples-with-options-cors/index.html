@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en">
+<title> Served Testing Fetch </title> <!-- <link rel="icon" href="link/or/path">  -->
+
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  
+  <div style='font-size: 30px; margin: 10px;'> Served Testing Fetch </div>
+  <a href="/api">
+    <button class='lgbtn'> GET url /api </button>
+  </a>
+
+  <br><br>
+  <button class='lgbtn' onclick="_get('/api', myCallback)">
+    GET fetch /api
+  </button>
+  <br><br>
+  <button class='lgbtn' onclick="_get('https://dog.ceo/api/breeds/list', myCallback)">
+    GET fetch EXTENAL api: <code>"https://dog.ceo/api/breeds/list"</code>
+  </button>
+
+  <br><br>
+  Name: <input id="userName" placeholder="...">
+  favColor: <input id="favColor" placeholder="...">
+  <button class='lgbtn' onclick="_post('/api', myCallback)">
+    POST fetch api: <code>"/api"</code>
+  </button>
+
+  <br><br>
+  <textarea id='display'></textarea>
+
+</body>
+<script type="text/javascript">
+
+function myCallback(data) {
+  console.log('data from callback: ', data)
+  display.innerHTML = JSON.stringify(data, null, 2)
+}
+
+</script>
+<script src="fetch.js"></script>
+<style media="screen">
+a {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+}
+.lgbtn {
+  font-size: 20px;
+  padding: 0px 5px 2px 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+#display {
+  width: 100%;
+  min-height: 400px;
+  font-size: 20px;
+}
+
+</style>
+
+</html>

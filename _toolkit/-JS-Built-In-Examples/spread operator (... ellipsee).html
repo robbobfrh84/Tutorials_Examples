@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<title> Spread Operator </title> <body> Spread Operator: *See console </body>
+<script>
+
+const num = 7
+const str = "Hi"
+const bol = true
+const person = {
+  name: "Sally",
+  color: "green",
+  city: "Austin",
+  state: "Texas"
+}
+
+function myfun(...args){
+  console.log("args :", args)
+  console.log("num, str, bol, person: ", num, str, bol, person)
+  const user = {...person}
+  console.log("user :", user)
+}
+
+myfun(num, str, bol, person)
+
+
+// Getting selections of objects and arrays and joining.
+console.log('\n --- Selection and Joining --- \n')
+
+const animals = ["Rabbit", "Mouse", "Dog", "Cat"]
+const [rabbit, ...restOfAnimals] = animals
+console.log("rabbit, restOfAnimals :", rabbit, restOfAnimals)
+
+const {name, ...restOfPerson} = person
+console.log("name, restOfPerson :", name, restOfPerson)
+
+const moreAnimals = ["goat", "pig"]
+moreAnimals.push(...animals)
+console.log("moreAnimals :", moreAnimals)
+
+</script>
+</html>
+
+
+<!--
+
+RESOURCE: https://dmitripavlutin.com/how-three-dots-changed-javascript/
+
+-->

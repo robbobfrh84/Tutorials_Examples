@@ -1,0 +1,168 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Tester </title></head>
+<style> .bg { background: #ddd; margin: auto;} </style>
+<script src="canvas.js"></script>
+
+<strong>Example start, using c as the class name 'const': </strong><br> <br>
+const c = new canvas <br>
+c.new('myCanvas', 400, 200) <br> <br>
+
+<div> InnerHtml Script  <button onclick='ch.clear()' class='bg'> clear </button> </div>
+
+<canvas id="myCanvasHtml" class='bg'>
+  <script>
+    const ch = new canvas
+    ch.new('myCanvasHtml', 400,200)
+    ch.line(290,10,140,155) // default black and 1 px thick
+    ch.line(85,5,10,170,'red',4)
+    ch.cir(310,100,50,'blue', 5, 'pink')
+  </script>
+</canvas>
+
+<hr><div> c.line(startX, startY, endX, endY, strokeColor, lineWidth) </div>
+<canvas id="myCanvas" class='bg'></canvas>
+
+<hr><div> c.cir(centerX, centerY, radius, fillColor, lineWidth, strokeColor) {
+<br>  arc (p1, p2, centerX, centerY, radius, fillColor, lineWidth, strokeColor) { </div>
+<canvas id="myCanvas2" class='bg'></canvas>
+
+<hr><div> c.rec(startX, startY, endX, endY, fillColor, lineWidth, strokeColor) { </div>
+<canvas id="myCanvas3" class='bg'></canvas>
+
+<hr><div> c.text(content, x, y, font, style) { </div>
+<canvas id="myCanvas4" class='bg'></canvas>
+
+<hr><div> Linear: c.path(startX, startY, *'l'points, lineWidth, strokeColor, fillColor) { </div>
+<canvas id="myCanvas5" class='bg'></canvas>
+
+<hr><div> Quadratic: c.path(startX, startY, *'q'points, lineWidth, strokeColor, fillColor) { </div>
+<canvas id="myCanvas6" class='bg'></canvas>
+
+<hr><div> Bezier: c.path(startX, startY, *'b'points, lineWidth, strokeColor, fillColor) { </div>
+<canvas id="myCanvas7" class='bg'></canvas>
+
+<hr><div> Scale: c.scale(x,y) { </div>
+<canvas id="myCanvas8" class='bg'></canvas>
+
+<hr><div>
+  Linear Gradient Color(Line): c.lGrad( *gradientObj ) {
+  </div>
+<canvas id="myCanvas9" class='bg'></canvas>
+
+<script>
+
+  // Lines
+  var c = new canvas
+  c.new('myCanvas', 400,200)
+  console.log(c)
+  c.line(40,10,140,55) // default black and 1 px thick
+  c.line(5,5,100,100,'red',4)
+  c.line(15,25,50,100,'blue',6)
+
+  // Circles, called arc in Canvas
+  var c2 = new canvas
+  c2.new('myCanvas2', 400,200)
+  c2.cir(10, 20, 10)
+  c2.cir(40, 75, 25, 'firebrick', 10, 'green')
+  c2.arc(0, Math.PI*0.5, 100, 50, 35, 'green', 10, 'red')
+  c2.arc(0, Math.PI, 200, 50, 35, 'green', 10, 'red')
+  c2.arc(0, Math.PI*1.5, 285, 50, 35, 'green', 10, 'red')
+  c2.arc(0, Math.PI*1.5, 70, 150, 35, 'rgba(0,0,0,0)', 10, 'red')
+  c2.cir(180, 150, 25, 'orange', 10, 'blue')
+
+  //rectangles
+  var c3 = new canvas
+  c3.new('myCanvas3', 400,200)
+  c3.rec(10,10,100,50)
+  c3.rec(150,10,100,50, 'red')
+  c3.rec(290,10,100,50, 'red', 10, 'green')
+
+  //text
+  var c4 = new canvas
+  c4.new('myCanvas4', 400,200)
+  c4.text('Yoo!', 40, 20)
+  c4.text('Yoo!', 90, 50, 50, 'arial')
+
+  //straight path
+  var c5 = new canvas
+  c5.new('myCanvas5', 400,200)
+  c5.path(15, 50, [
+    ['l', 30, 75],
+    ['l', 60, 100],
+    ['l', 80, 70],
+    ['l', 15, 50]
+  ], 4, 'cornflowerblue', 'green', true)
+  c5.path(115, 50, [
+    ['l', 130, 75],
+    ['l', 160, 100],
+    ['l', 180, 70],
+    ['l', 115, 50]
+  ], 4, 'cornflowerblue')
+
+  //quadratic curve
+  const c6 = new canvas
+  c6.new('myCanvas6', 400,200)
+  c6.path(75,25, [
+    ['q', 25, 25, 25, 62.5],
+    ['q', 25, 100, 50, 100],
+    ['q', 50, 120, 30, 125],
+    ['q', 60, 120, 65, 100],
+    ['q', 125, 100, 125, 62.5],
+    ['q', 125, 25, 75, 25]
+  ])
+
+  //bezier curve
+  const c7 = new canvas
+  c7.new('myCanvas7', 400,200)
+  c7.path(75,40, [
+    ['b', 75, 37, 70, 25, 50, 25],
+    ['b', 20, 25, 20, 62.5, 20, 62.5],
+    ['b', 20, 80, 40, 102, 75, 120],
+    ['b', 110, 102, 130, 80, 130, 62.5],
+    ['b', 130, 62.5, 130, 25, 100, 25],
+    ['b', 85, 25, 75, 37, 75, 40],
+  ])
+
+  // scale
+  const c8 = new canvas
+  c8.new('myCanvas8', 400,200)
+  c8.line(6,30,180,80, 'red', 3)
+  c8.scale(2,2)
+  c8.line(6,30,180,80, 'red', 3)
+
+  // Linear Gradient Color
+  const c9 = new canvas
+  c9.new('myCanvas9', 400,200)
+  c9.line(10,20,380,20, 'red', 10)
+
+  let color = c9.lGrad({
+    gradient: [ 0, 0, 380, 0],
+    colors: [
+      [ "0", "green" ],
+      [ "0.5", "blue"],
+      [ "1", "red"]
+    ]
+  })
+
+  c9.line(10,50,380,50, color, 10)
+
+  color = c9.lGrad({
+    gradient: [ 0, 0, 380, 0],
+    colors: [
+      [ "0.1", "rgba(0,0,0,0)" ],
+      [ "0.3", "green"],
+      [ "0.6", "blue"],
+      [ "0.8", "red"],
+      [ "0.9", "rgba(0,0,0,0)" ],
+    ]
+  })
+
+  c9.line(10,80,380,80, color, 10)
+
+  // ... to clear
+  // c.clear()
+
+</script>
+
+<!-- *** NOTES ***
+link: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+-->

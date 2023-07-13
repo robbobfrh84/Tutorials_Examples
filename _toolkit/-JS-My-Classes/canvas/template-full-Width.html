@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Canvas Template-full </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style>
+canvas, div { background-color: #dddddd; position: absolute; top: 0; left: 0 }
+#scale { display: none; padding: 3px; }
+</style>
+</head>
+  <canvas id='c1'></canvas>
+  <div id='scale'> Scale to fit window ?
+    <button onClick="canvasBuild(); hide()"> yes </button>
+    <button onClick="hide()"> no </button>
+  </div>
+</html>
+<script src="canvas.js"></script>
+<script>
+
+canvasBuild = (w = window.innerWidth)=>{
+  const u = w/100
+  const c1 = new canvas
+  c1.new('c1', w, w*.6)
+  c1.line(10*u,10*u*.6,90*u,90*u*.6,'red',0.5*u)
+}
+
+canvasBuild()
+
+hide = ()=>{ document.getElementById('scale').style.display = 'none' }
+
+window.onresize = ()=>{
+  document.getElementById('scale').style.display = 'block'
+}
+
+</script>

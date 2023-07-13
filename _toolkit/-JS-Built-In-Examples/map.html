@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Map </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style media="screen">
+  .code {
+    background-color: rgba(174,167,167,0.5);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  body {
+    font-family: avenir;
+    font-size: 20px;
+  }
+</style>
+</head>
+  <a style='color: firebrick' href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/map.html">Map</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/filter.html">Filter</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/reduce.html">Reduce</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/error.html">Error</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/promise.html">Promise</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/async.html">Async</a> ::
+  <h3>Map</h3>
+  Functional programming is a programming paradigm where the output value of a
+  function depends only on the arguments passed to the function. So, calling a
+  function a determinate amount of times will always produce the same result,
+  no matter theamount of times you call it.
+
+  This contrasts with a lot of common and contemporary code, where a lot of
+  functions work with a local or global state, which may end up returning
+  different results at different executions. <strong>A change in that
+  state is a side-effect and, eliminating these, can make it easier to understand and predict the behavior of your code.</strong>
+  <br> <br>
+  <li>  <em>...*See Console for code results and .html file for source code.</em> </li>
+  <li>  <a href="https://medium.com/@joomiguelcunha/learn-map-filter-and-reduce-in-javascript-ea59009593c4"> Resource </a></li>
+
+<script>
+
+/* ONE --- *** --- *** --- *** --- *** --- *** */
+
+(()=>{
+  const myArray = [1,2,3,4];
+
+  const myArrayTimesTwo = myArray.map( (value, index, array)=>{
+    return value * 2
+  })
+
+  const newArray = myArrayTimesTwo
+
+  console.log('myArray: ',myArray)
+  console.log('newArray: ',newArray)
+})();
+
+/* Bob Example --- *** --- *** --- *** --- *** --- *** */
+
+// Lets try a map that divides by 2
+(()=>{
+  const arr = [2,4,6,8]
+
+  const divideTwo = arr.map( val => {
+    return val / 2
+  })
+
+  const arr2 = divideTwo
+
+  console.log('arr2: ',arr2)
+
+  // ES6/Clean/1-line
+  const arr3 = [2,3,4,5].map( x => x * 8 )
+
+  console.log('ES6 > arr3: ',arr3)
+
+})();
+
+/* TWO --- *** --- *** --- *** --- *** --- *** */
+(()=>{
+
+  const songs = [
+    { id: 1, name: 'song1', artist: 'artist1' },
+    { id: 2, name: 'song2', artist: 'artist2' },
+    { id: 3, name: 'song3', artist: 'artist3' },
+    { id: 4, name: 'song4', artist: 'artist4' },
+  ]
+
+  const allSongName = songs.map( song => {
+    return song.name
+  })
+
+  const songNames = allSongName
+
+  console.log('songNames: ',songNames)
+
+/* Bob Example --- *** --- *** --- *** --- *** --- *** */
+
+  const transformKeys = songs.map( index => {
+    return { track: index.id, song: index.name, singer: index.artist }
+  })
+
+  console.log('transformKeys: ',transformKeys)
+
+/* THREE --- *** --- *** --- *** --- *** --- *** */
+
+  const loudSongs = song => {
+    console.log(song.id, song.name, song.artist)
+    return song.name.toUpperCase()
+  }
+
+  const loudSongsArr = songs.map(loudSongs)
+
+  console.log(loudSongsArr)
+
+/* FOUR --- *** --- *** --- *** --- *** --- *** */
+
+  const mapped = songs.map( song => {
+    const { artist, ...rest } = song
+    return {
+      ...rest,
+      album: 'unknown'
+    }
+  })
+
+  const noArtist = mapped
+
+  console.log('noArtist: ', JSON.stringify(noArtist, null, 2))
+
+  const x = JSON.stringify(noArtist, null, 2)
+
+})();
+
+/* Bob's Custom Map --- *** --- *** --- *** --- *** --- *** */
+
+(()=>{
+
+const arr = [5,6,7,8]
+
+const myMap = (array, arg)=>{
+  const result = []
+  for (const index in array) {
+    result.push(arg(array[index]))
+  }
+  return result
+}
+
+const arr2 = myMap(arr, x => x * 2)
+
+console.log(arr2)
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
+
+<!-- Notes...
+
+// document.getElementById('p1').innerHTML += `
+// <div class='code'>
+//   const myArray = [1,2,3,4]; <br>
+//   <br>
+//   const myArrayTimesTwo = myArray.map( (value, index, array)=>{ <br>
+//   &nbsp;&nbsp; return value * 2 <br>
+//   }) <br><br>
+//
+//   const newArray = myArrayTimesTwo<br><br>
+//
+// </div>
+// <br>
+// newArray: [${newArray}]
+// `
+
+... -->

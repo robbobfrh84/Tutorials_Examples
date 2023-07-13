@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Filter </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style media="screen">
+  .code {
+    background-color: rgba(174,167,167,0.5);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  body {
+    font-family: avenir;
+    font-size: 20px;
+  }
+</style>
+</head>
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/map.html">Map</a> ::
+  <a style='color: firebrick' href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/filter.html">Filter</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/reduce.html">Reduce</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/error.html">Error</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/promise.html">Promise</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/async.html">Async</a> ::
+  <h3> Filter </h3>
+  <li>  <em>...*See Console for code results and .html file for source code.</em> </li>
+  <li>  <a href="https://medium.com/@joomiguelcunha/learn-map-filter-and-reduce-in-javascript-ea59009593c4"> Resource </a></li>
+<script>
+
+/* ONE --- *** --- *** --- *** --- *** --- *** */
+
+(()=>{
+
+  const arr = [1,2,3,4]
+
+  const myEvenArray = arr.filter( (value, index, array) => {
+    return value % 2 === 0
+  })
+
+  const arr2 = myEvenArray
+
+  console.log('arr2: ',arr2)
+
+})();
+
+/* Bob Example --- *** --- *** --- *** --- *** --- *** */
+
+(()=>{
+
+  const colors = ['green','blue','red','yellow','blue','red','green','blue','red']
+
+  const removeRed = colors.filter( x => x !== 'red')
+
+  const colorsNoRed = removeRed
+
+  console.log('colorsNoRed: ',colorsNoRed)
+
+})();
+
+/* TWO --- *** --- *** --- *** --- *** --- *** --- *** */
+
+(()=>{
+
+  const names = ['bob','emily','todd','diane','colin','john','james','lowell','heather']
+
+  const filterStr = (str, arr) => {
+    return arr.filter( x => x.includes(str) )
+  }
+
+  const filteredNames = filterStr('h', names)
+
+  console.log('filteredNames: ',filteredNames)
+
+})();
+
+</script>
+</html>

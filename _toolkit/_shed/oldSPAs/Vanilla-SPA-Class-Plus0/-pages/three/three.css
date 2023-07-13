@@ -1,0 +1,12 @@
+#three {
+  background-color: rgba(165,42,42,0.7);
+}
+#three .navBtn {
+  background-color: #ddd;
+}
+#three .navBtn-active {
+  background-color: #999;
+}
+#three #home-btn {
+  width: 150px;
+}

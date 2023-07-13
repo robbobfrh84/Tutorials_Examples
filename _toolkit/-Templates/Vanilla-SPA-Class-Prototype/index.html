@@ -1,0 +1,38 @@
+<!DOCTYPE html><html>
+<head>
+  <title> Vanilla SPA </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='js/SPA.js'></script>
+  <!-- graphics  -->
+  <link rel="shortcut icon" href="gfx/cog.png"/>
+  <!-- css -->
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="spaBody"></div>
+</body>
+
+<script>
+
+window.onload = ()=>{
+  const spa =  new SPA()
+  spa._start({ landingPage: 'home' })
+}
+
+</script>
+
+<script src='components/_navbar/navbar.js'></script>
+
+<link rel="stylesheet" href="components/page_home/home.css">
+<script src='components/page_home/home.js'></script>
+
+<link rel="stylesheet" href="components/page_two/two.css">
+<script src='components/page_two/two.js'></script>
+
+<link rel="stylesheet" href="components/page_three/three.css">
+<script src='components/page_three/three.js'></script>
+
+<script src='components/pagefull_full/full.js'></script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Error </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style media="screen">
+  .code {
+    background-color: rgba(174,167,167,0.5);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  body {
+    font-family: avenir;
+    font-size: 20px;
+  }
+</style>
+</head>
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/map.html">Map</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/filter.html">Filter</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/reduce.html">Reduce</a> ::
+  <a style='color: firebrick' href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/error.html">Error</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/promise.html">Promise</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/async.html">Async</a> ::
+  <h3> Errors </h3>
+  <li>  <em>...*See Console for code results and .html file for source code.</em> </li>
+<script>
+
+(()=>{
+
+  const word = 'hello'
+
+  try {
+    word.push(' world')
+  }
+  catch (error) {
+    console.log(error)
+  }
+
+  console.log('But we get to continue on... to show how we could not')
+
+  word.push(' world')
+
+  console.log('Will NOT Log This :-(')
+
+
+})();
+
+</script>
+</html>

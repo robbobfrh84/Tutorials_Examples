@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+    * See Console Logs <hr>
+    Running local server required: <br>
+    <button onClick="get()">get</button> <br>
+    <button onClick="post()">post</button>
+  </body>
+  <script type="text/javascript">
+
+
+    function get(){
+
+      fetch("https://dog.ceo/api/breeds/list")
+        .then( res => res.json())
+        .then( data => console.log("GET got some data:", data))
+        .catch( err => console.log("oops, looks like we got an error: ", err))
+        .finally( ()=> console.log("finally, This function always runs..."))
+
+    }
+
+    function post(){
+
+      fetch("http://localhost:3000/api", {
+        method: "post",
+        body: JSON.stringify({ message: "I'm a post request"}),
+        headers: { "content-type": "application/json" }
+      })
+        .then( response => response.json())
+        .then( data => console.log("GET got some data:", data))
+        .catch( err => console.log("oops, looks like we got an error: ", err))
+        .finally( ()=> console.log("finally, This function always runs..."))
+
+    }
+
+  </script>
+</html>

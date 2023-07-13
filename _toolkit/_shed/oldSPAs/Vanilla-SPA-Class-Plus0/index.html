@@ -1,0 +1,46 @@
+<!DOCTYPE html><html>
+<head>
+  <title> Vanilla SPA </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Single Page Application Class -->
+  <script src='js/spa.js'></script>
+  <!-- graphics  -->
+  <link rel="shortcut icon" href="gfx/cog.png"/>
+  <!-- css -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body></body>
+<script>
+
+const spa =  new Single_Page_Application
+window.onload = ()=>{
+  spa.start({
+    landingPage: 'home'
+  })
+}
+window.onhashchange = (event)=>{ spa.hashChange(event) }
+
+</script>
+
+<!-- components -->
+<script src='-components/navBar/navBar.js'></script>
+<link rel="stylesheet" href="-components/navBar/navBar.css">
+
+<script src='-components/footer/footer.js'></script>
+<link rel="stylesheet" href="-components/footer/footer.css">
+
+<!-- pages -->
+<link rel="stylesheet" href="-pages/home/home.css">
+<script src='-pages/home/home.js'></script>
+
+<script src='-pages/two/two.js'></script>
+<link rel="stylesheet" href="-pages/two/two.css">
+
+<script src='-pages/three/three.js'></script>
+<link rel="stylesheet" href="-pages/three/three.css">
+
+<script src='-pages/full/full.js'></script>
+<link rel="stylesheet" href="-pages/full/full.css">
+
+</html>

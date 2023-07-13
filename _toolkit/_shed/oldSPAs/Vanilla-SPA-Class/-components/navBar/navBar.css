@@ -1,0 +1,8 @@
+#main {
+  background-color: rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+}
+.navBtn-active {
+  background-color: rgba(0,0,0,0.1);
+}

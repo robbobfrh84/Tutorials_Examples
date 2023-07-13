@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en">
+<title> Cross Origin testing Fetch </title> <!-- <link rel="icon" href="link/or/path">  -->
+
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <div style='font-size: 30px; margin: 10px;'> Cross Origin testing Fetch </div>
+  <a href="http://localhost:3000/api">
+    <button class='lgbtn'> GET url http://localhost:3000/api </button>
+  </a>
+
+  <br><br>
+  <button class='lgbtn' onclick="_get('http://localhost:3000/api', myCallback)">
+    GET fetch http://localhost:3000/api
+  </button>
+  <br> 👆 will error <br>
+
+  <button class='lgbtn' onclick="_get('http://localhost:3000/api/Access-Control-Allow-Origin', myCallback)">
+    GET fetch as CROSS-ORIGIN http://localhost:3000/api/Access-Control-Allow-Origin
+  </button>
+  <br> 👆 this api route allows cross-orgin responses <br>
+
+  Name: <input id="userName" placeholder="...">
+  favColor: <input id="favColor" placeholder="...">
+  <button class='lgbtn' onclick="_postCO('http://localhost:3000/api/Access-Control-Allow-Origin', myCallback)">
+    POST fetch api: <code>http://localhost:3000/api/Access-Control-Allow-Origin</code>
+  </button>
+
+  <br><br>
+  <textarea id='display'></textarea>
+
+</body>
+<script type="text/javascript">
+
+function myCallback(data) {
+  console.log('data from callback: ', data)
+  display.innerHTML = JSON.stringify(data, null, 2)
+}
+
+</script>
+<script src="public/fetch.js"></script>
+<style media="screen">
+a {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+}
+.lgbtn {
+  font-size: 20px;
+  padding: 0px 5px 2px 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+#display {
+  width: 100%;
+  min-height: 400px;
+  font-size: 20px;
+}
+
+</style>
+
+</html>

@@ -1,0 +1,21 @@
+#navBar {
+  background-color: rgba(100,149,237,0.5);
+  line-height: 30px;
+  height: 30px;
+  box-shadow: 0px 1px 0.1px rgba(0,0,0,0.5);
+  padding: 0 1.25% 0 1.25%;
+  margin-bottom: 10px;
+}
+#navBar-body {
+  margin: auto;
+  max-width: 1000px;
+  padding: 0 10px 0 10px;
+  background-color: rgba(100,149,237,0.8);
+}
+.navBtn {
+  background-color: #ddd;
+  cursor: pointer;
+}
+.navBtn-active {
+  background-color: #999;
+}

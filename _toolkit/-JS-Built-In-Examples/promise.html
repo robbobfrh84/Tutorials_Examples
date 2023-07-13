@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title> Promise </title>
+<link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/set-app-incredibles/24/Configuration-2-01-128.png"/>
+<style media="screen">
+  .code {
+    background-color: rgba(174,167,167,0.5);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  body {
+    font-family: avenir;
+    font-size: 20px;
+  }
+</style>
+</head>
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/map.html">Map</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/filter.html">Filter</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/reduce.html">Reduce</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/error.html">Error</a> ::
+  <a style='color: firebrick' href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/promise.html">Promise</a> ::
+  <a href="file:///Users/robbobfrh84/Github/jsHelper/JS-built-in-examples/async.html">Async</a> ::
+  <h3> Promise </h3>
+  A Promise analogy: You order a new toy online and it's "promised" to be there
+  by next week. <br>
+  <br>
+  You don't <em>know</em> you'll get your package next week. There could be a
+  delay, it could get lost in transit, etc... <br>
+  <br>
+  That is a promis. A promis has 3 states. They are...
+  <li> 1. A promise is <strong>pending</strong>: You don't know if you will
+    get your package </li>
+  <li> 2. A promise is <strong>resolved</strong>: Your package is delivered </li>
+  <li> 3. A promise is <strong>rejected</strong>: You package does not arrive
+    the following weeks </li>
+  <hr>
+  <li>  <em>...*See Console for code results and .html file for source code.</em> </li>
+  <li>  <a href="https://scotch.io/tutorials/javascript-promises-for-dummies"> Resource </a></li>
+  <hr>
+
+<script>
+
+/* ONE --- *** --- *** --- *** --- *** --- *** */
+
+const isMomHappy = true;
+
+// Promise
+const willIGetNewPhone = new Promise(
+    (resolve, reject) => { // fat arrow
+        if (isMomHappy) {
+            const phone = {
+                brand: 'Samsung',
+                color: 'black'
+            };
+            resolve(phone);
+        } else {
+            const reason = new Error('mom is not happy');
+            reject(reason);
+        }
+
+    }
+);
+
+const showOff = (phone)=>{
+  console.log('showoff')
+    const message = 'Hey friend, I have a new ' +
+                phone.color + ' ' + phone.brand + ' phone';
+    return Promise.resolve(message);
+};
+
+// call our promise
+const askMom = ()=>{
+  willIGetNewPhone
+    .then(showOff)
+    .then(fulfilled => console.log('fulfilled: ',fulfilled)) // fat arrow
+    .catch(error => console.log(error.message)); // fat arrow
+};
+
+askMom();
+
+
+
+/* Bob Example --- *** --- *** --- *** --- *** --- *** */
+
+myPromise = (delivered)=>{
+
+  const willIGetToy = new Promise((resolve, reject)=>{
+    if (delivered) {
+      const toy = {
+        name: 'Teddy Bear',
+        color: 'Brown'
+      }
+      resolve(toy)
+    } else {
+      const reason = new Error(`\n
+        Was not delivered
+      `)
+      reject(reason)
+    }
+  })
+
+  const showAndTell = (toy)=>{
+    const message = `
+      Hello Class,
+
+      Today for "Show and Tell" I have brought my...
+      ...${toy.color} ${toy.name}!
+    `
+    return Promise.resolve(message)
+
+  }
+
+  const checkforPackage = ()=>{
+    willIGetToy
+      .then(showAndTell)
+      .then(fulfilled => console.log('\n\n', fulfilled))
+      .catch(error => console.log('\n\n', error))
+
+  }
+
+  checkforPackage()
+
+}
+
+setTimeout(()=>{ myPromise(false) }, 1000)
+
+setTimeout(()=>{ myPromise(true) }, 2000)
+
+</script>
+</html>
