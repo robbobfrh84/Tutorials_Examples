@@ -24,7 +24,7 @@ class canvas {
     this.ctx.moveTo(startX, startY)
     if (lineCap) this.ctx.lineCap = lineCap
     this.ctx.lineTo(endX,endY)
-    this.paint( lineWidth || 1, strokeColor || 'black' )
+    this.paint( lineWidth || 1, strokeColor || 'black',  'rgba(0,0,0,0)')
     this.ctx.fill()
     this.ctx.stroke()
   }
