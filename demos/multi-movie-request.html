@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> Favorite Movies </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Basic Table</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Movie Name</th>
+          <th scope="col">Year</th>
+          <th scope="col">Actors</th>
+          <th scope="col">Poster</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
+<script type="text/javascript">
+
+var movies = [ "Dr. Strangelove", "Contact", "Jerry MaGuire",
+               "Cool hand Luke", "Thelma %26 Louise", "Little Big Man"] ;
+
+  var createRow = function(response) {
+    console.log(response.Title)
+    var tRow = $("<tr>");
+    var titleTd = $("<td>").text(response.Title);
+    var yearTd = $("<td>").text(response.Year);
+    var actorsTd = $("<td>").text(response.Actors);
+    var poster = $("<td>").html("<img src="+response.Poster+" style='width: 90px;'/>");
+    tRow.append(titleTd, yearTd, actorsTd, poster);
+    $("tbody").append(tRow);
+  };
+
+  var searchOMDB = function(movie) {
+
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      createRow(response);
+    })
+
+  };
+
+  for (var i = 0; i < movies.length; i++) {
+    searchOMDB(movies[i])
+  }
+
+</script>
+
+</html>

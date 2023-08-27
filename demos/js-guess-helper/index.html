@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en">
+<title> ? title ? </title> <!-- <link rel="icon" href="link/or/path">  -->
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <input type="text" id='userGuess'>
+  <button id="guessBtn"> Guess </button>
+  <p id='guesses'></p>
+</body>
+<script>
+
+var guessBtn = document.getElementById('guessBtn')
+
+var guessCount = 0
+var userGuess;
+var allUserGuesses = ""
+var computerGuess;
+
+guessBtn.onclick = function(){
+  var userGuess = document.getElementById('userGuess')
+  if (guessCount === 0) {
+    computerGuess = Math.floor(Math.random() * 10)
+    console.log("...NEW computerGuess");
+  } else {
+    console.log("...Preserve computerGuess");
+  }
+  guessCount++
+
+  console.log('computerGuess: ', computerGuess);
+  console.log('UserGuess: ', userGuess.value);
+
+  if (computerGuess === userGuess) {
+    console.log('CORRECT')
+    guessCount = 0
+  } else {
+    console.log(".WRONG!: "+guessCount+" guesses used")
+    allUserGuesses += userGuess.value+","
+    var guesses = document.getElementById('guesses')
+    guesses.textContent = allUserGuesses
+
+  }
+
+}
+
+</script>
+</html>

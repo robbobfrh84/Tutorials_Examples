@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+function swapPlanets(ogPlanets, newPlanets) {
+
+  for (var i = 0; i < ogPlanets.length; i++){
+    planets[i] = newPlanets[i]
+  }
+
+  console.log("swapped Planets", ogPlanets)
+
+}
+
+var planets = ["Mercury","Venus","Earth","Mars","Jupiter"]
+var crazyPlanets = ["PSQ-24","Vulcun","Tatooine","Krypton","Moon Moon's"]
+var planetsX = ["asdf","qwer","3456e","fghjk","d"]
+
+swapPlanets(planets, crazyPlanets)
+swapPlanets(crazyPlanets, planetsX)
+swapPlanets(crazyPlanets, [1,2,2,4,5])
+
+</script>
+</html>

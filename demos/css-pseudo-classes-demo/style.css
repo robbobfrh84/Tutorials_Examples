@@ -1,0 +1,17 @@
+.btn1 {
+  font-size: 30px;
+  border: 10px solid blue;
+}
+.btn1:hover {
+  color: #999;
+}
+.btn1:focus {
+  border: 10px solid green;
+}
+.btn1:active {
+  background-color: firebrick;
+}
+
+div {
+  float: right;
+}

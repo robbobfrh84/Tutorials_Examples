@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en">
+<title> Bounce Box </title> <!-- <link rel="icon" href="link/or/path">  -->
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="text-align: center;">
+  <h1> Bounce Box </h1>
+  <div style='width: 400px; height: 300px; background-color: #aaa; margin: auto;'>
+    <div id='ball' style='position: relative; border-radius: 100%; width: 40px; height: 40px; background-color: blue; top: 0; left: 0;'></div>
+  <div>
+</div>
+</body>
+<script>
+
+var boxX = 400, boxY = 300
+
+var ball = {
+  trajectoryX: 4,
+  trajectoryY: 8,
+  radius: 20,
+  elm: document.querySelector('#ball'),
+  move: function(){
+    const currentX = parseInt(this.elm.style.top.split('px')[0])
+    const currentY = parseInt(this.elm.style.left.split('px')[0])
+    this.elm.style.top = currentX + this.trajectoryX +'px'
+    this.elm.style.left = currentY + this.trajectoryY +'px'
+    this.checkWall()
+    requestAnimationFrame(this.move.bind(ball)) // OR controll speed with: setTimeout(this.move.bind(ball), 200)
+  },
+  checkWall: function(){
+    const left = parseInt(this.elm.style.left.split('px')[0])
+    const top = parseInt(this.elm.style.top.split('px')[0])
+    if (left >= (boxX - this.radius*2) || left <= 0) {
+      this.trajectoryY *= -1
+    }
+    if (top >= (boxY - this.radius*2)
+    || parseInt(this.elm.style.top.split('px')[0]) <= 0) {
+      this.trajectoryX *= -1
+    }
+  }
+
+}
+
+ball.move()
+
+</script>
+</html>
