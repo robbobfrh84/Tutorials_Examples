@@ -29,7 +29,7 @@ Alright, it's time to dive into building a small AI app. For this project, I'll 
 - You should now be able to run `node data-prompt.js` in your projects root folder and see an output response!
 
 ### My source code for this project
-- Visit: \[My project folder\](https://github.com/robbobfrh84/Tutorials_Examples/tree/main/AI/PaLM%20API%20-%20basic%20data%20prompt%20example) on github.
+- Visit: [My project folder](https://github.com/robbobfrh84/Tutorials_Examples/tree/main/AI_Lab/PaLM_API-basic_data_prompt_example) on github.
 - There: you'll see a file called `prompt.js` where I've created. 
 - Here: I've seperated the prompt into it's own file where i can work on it without all the noise from the other code. 
 
