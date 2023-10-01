@@ -1,0 +1,17 @@
+{
+  "name": "openai_bare_bones",
+  "version": "0.1.0",
+  "private": true,
+  "openai": "^4.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "openai": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=14.6.0"
+  }
+}
