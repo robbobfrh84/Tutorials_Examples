@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang='en'>
+<!-- <title> Open AI: Basic Server Client Example </title> -->
+<title> Open AI: Object to Image Example </title>
+
+<!-- <link rel='icon' href='link/or/path'>  -->
+<head>
+  <meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet' href='css/main.css'>
+</head>
+
+<body>
+  <!-- <h1> Open AI: Basic Server Client Example </h1> -->
+  <h1> Open AI: Object to Image Example </h1><hr> 
+
+
+  <!-- 🐣 Create Object 🐣 -->
+  Theme: <input id="themeInput" type="text" value="Gopher">
+  <button onclick="createObject()">
+    Create Object
+  </button><br>
+  <textarea id="responseObjTextArea" cols="50" rows="15"></textarea><br>
+
+  <!-- 🗣️ Create Object Describe 🗣️ -->
+  <button id="createObjectDescribeBtn" class="hide" onclick="createObjectDescribe()">
+    Create Object Describe
+  </button><br>
+  <textarea id="responseDescribeTextArea" class="hide" cols="50" rows="15"></textarea><br>
+
+  <!-- 📸 Create Image 📸 -->
+  <button id="createImageBtn" class="hide" onclick="createImage()">
+    Create Image from Description
+  </button><br>
+  <none id="imageDiv"></none>
+  
+
+  <!-- 🔄 LOADER 🔄 -->
+  <div id="loader" class="loader-container">
+    <div class="centered-loader"><div class="loader-image"></div></div>
+  </div>
+</body>
+
+<script src='app.js'></script>
+<script src='js/events.js'></script>
+<script src='js/requests.js'></script>
+</html>
