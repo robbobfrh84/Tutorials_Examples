@@ -1,7 +1,7 @@
 /* 📬 * * * * * Request * * * * * 📬 */ 
 
 /* 🐣 Create Object 🐣 */
-function createObjectAPI(theme, callback) {
+function createObjectAPI({ theme }, callback) {
   const urlString = _config.url+"create_object?"+(new URLSearchParams({
     theme: theme, 
     limit_fields: 10
@@ -19,7 +19,7 @@ function createObjectDescribeAPI({ theme, object }, callback) {
 }
 
 /* 📸 Create Image 📸 */
-function createImageAPI(prompt, callback) {
+function createImageAPI({ prompt }, callback) {
   const urlString = _config.url+"create_image?"+(new URLSearchParams({
     prompt: prompt,
   })).toString()

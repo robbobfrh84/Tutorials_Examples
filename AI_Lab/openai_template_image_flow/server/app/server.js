@@ -5,7 +5,7 @@ const buildAPI = function() {
   const app = express()
   const PORT = process.env.PORT || 8080;
   app.get('/favicon.ico', (req, res) => res.status(204));
-  app.get('/', (req, res)=>{res.send(`<h3> API😊 Nothing at root url, try adding an endpoint`)})
+  app.get('/', (req, res)=>{res.send(`<h3> Nothing at root url, try adding an endpoint </h3>`)})
   app.get('/create_object',  asyncWrapper(queryRequest))
   app.get('/create_object_Describe',  asyncWrapper(queryRequest))
   app.get('/create_image',  asyncWrapper(queryRequest))

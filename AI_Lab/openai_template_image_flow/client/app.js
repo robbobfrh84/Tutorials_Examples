@@ -1,7 +1,5 @@
 const _config =  {
   url: "http://localhost:8080/",
-  object: {},
-  description: "",
 }
 
 window.onload = ()=>{
