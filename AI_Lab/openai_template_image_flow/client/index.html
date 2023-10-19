@@ -8,33 +8,45 @@
 </head>
 
 <body>
+
   <h1>OpenAI: Template - Image Flow</h1><hr> 
 
+  <main>
 
-  <!-- 🐣 Create Object 🐣 -->
-  Theme: <input id="themeInput" type="text" value="Gopher">
-  <button onclick="createObject()">
-    Create Object
-  </button><br>
-  <textarea id="responseObjTextArea" cols="50" rows="15"></textarea><br>
+    <section>
 
-  <!-- 🗣️ Create Object Describe 🗣️ -->
-  <button id="createObjectDescribeBtn" class="hide" onclick="createObjectDescribe()">
-    Create Object Describe
-  </button><br>
-  <textarea id="responseDescribeTextArea" cols="50" rows="15"></textarea><br>
+      <!-- 🐣 Create Object 🐣 -->
+      Theme: <input id="themeInput" type="text" value="Gopher">
+      <button onclick="createObject()">
+        Create Object {...}
+      </button><br>
+      <textarea id="responseObjTextArea" cols="50" rows="39"></textarea><br>
 
-  <!-- 📸 Create Image 📸 -->
-  <button id="createImageBtn" onclick="createImage()">
-    Create Image from Description
-  </button><br>
-  <none id="imageDiv"></none>
-  
+    </section>
+
+    <section>
+
+      <!-- 🗣️ Create Object Describe 🗣️ -->
+      <button id="createObjectDescribeBtn" onclick="createObjectDescribe()" disabled>
+        Create Description from Object 🗣️
+      </button>
+      <textarea id="responseDescribeTextArea" cols="50" rows="10"></textarea><br>
+
+      <!-- 📸 Create Image 📸 -->
+      <button id="createImageBtn" onclick="createImage()">
+        Create Image from Description 📸
+      </button><br>
+      <none id="imageDiv"></none>
+
+    </section>
+
+  </main>
 
   <!-- 🔄 LOADER 🔄 -->
   <div id="loader" class="loader-container">
     <div class="centered-loader"><div class="loader-image"></div></div>
   </div>
+  
 </body>
 
 <script src='app.js'></script>

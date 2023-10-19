@@ -6,7 +6,7 @@ function createObject() {
     theme: themeInput.value, 
   }, (data)=>{
     console.log('🐣 response data:', data)
-    createObjectDescribeBtn.style.display = "block"
+    createObjectDescribeBtn.disabled = false
     responseObjTextArea.value = JSON.stringify(data.response,null,2)
   })
 }
@@ -19,9 +19,7 @@ function createObjectDescribe() {
   }, (data)=>{
     console.log('🗣️ response data:', data)
     const description = data.response.split("\n").join('')
-    responseDescribeTextArea.value = /*html*/`
-      ${description}
-    `
+    responseDescribeTextArea.value = description
   })
 }
 

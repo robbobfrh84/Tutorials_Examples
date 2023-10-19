@@ -1,12 +1,16 @@
-html, body, * {
+* {
   margin-bottom: 8px;
 }
 h1 {
   margin: 5px 0px;
   font-size: 30px;
 }
-.hide {
-  display: none;
+main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+button {
+  height: 25px;
 }
 
 /* Loader */

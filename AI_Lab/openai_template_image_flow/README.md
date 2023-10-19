@@ -1,12 +1,3 @@
----- to do ✅ 🟡 ----
-
-- ✅ rename index and review all files for naiming
-- 🟡 use both object and description input as values for requests. should remove `_config`
-  - 🟡 Ok, just need to remove notes, test again.
-- ✅ Finish Example user flow below in this readme
-- delect these notes from readme. 
-
----- to do ----
 # 🏗️ Development 🏗️
 
 ##### Setting Up & Adding Dependancies:
