@@ -5,3 +5,7 @@ This looks like a great walk-through on YouTube and has a lot of resources and r
 
 Dart
 - Real: https://dartpad.dev/?
+
+Getting started Guide Link
+- https://docs.flutter.dev/get-started/install/macos/mobile-ios?tab=download
+
