@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+    * See Console Logs <hr>
+    Running local server required: <br>
+    <button onClick="get()">get</button> <br>
+    <button onClick="post('a')">post a</button> 
+    <button onClick="post('b')">post b</button>     
+    <button onClick="post('c')">post c</button>
+  </body>
+  <script type="text/javascript">
+
+
+    function get(){
+
+      fetch("http://localhost:3000/todos")
+        .then( res => res.json())
+        .then( data => console.log("data:", data))
+        .catch( err => console.log("oops, looks like we got an error: ", err))
+        .finally( ()=> console.log("finally, This function always runs..."))
+    }
+
+    function post(postName){
+
+      fetch("http://localhost:3000/todo", {
+        method: "POST",
+        headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }, // this is recieved by the express router as the key with an empty value. i couldn't figure it out anyother way tho it WORKS!
+        body: JSON.stringify({ 
+          "title": "example"
+        }),
+      })
+        .then( response => response.json())
+        .then( data => console.log("GET got some data:", data))
+        .catch( err => console.log("oops, looks like we got an error: ", err))
+        .finally( ()=> console.log("finally, This function always runs..."))
+
+    }
+
+  </script>
+</html>

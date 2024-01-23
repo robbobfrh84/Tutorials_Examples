@@ -1,0 +1,10 @@
+function reverse_string(str) {
+  let reversed = ""
+  for (i = str.length - 1; i >= 0; i--) {
+    console.log('i, str[i]', i, str[i])
+    reversed += str[i]
+  }
+  return reversed
+}
+
+console.log( reverse_string("abcdefg") )
