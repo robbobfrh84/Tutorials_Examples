@@ -33,11 +33,9 @@
   <script type="text/javascript">
 
     function post(postName){
-
       fetch("http://localhost:3000/todo", {
         method: "POST",
         headers: {  "Content-Type": "application/json", },
-        // headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }, // this is recieved by the express router as the key with an empty value. i couldn't figure it out anyother way tho it WORKS!
         body: JSON.stringify({ 
           title: postName
         }),
@@ -45,7 +43,6 @@
         .then( response => response.json())
         .then( data => console.log("data:", data))
         .catch( err => console.log("oops, looks like we got an error: ", err))
-
     }
 
     function get(){
@@ -61,10 +58,8 @@
       fetch("http://localhost:3000/todo/"+id, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
-        // headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }, // this is recieved by the express router as the key with an empty value. i couldn't figure it out anyother way tho it WORKS!
         body: JSON.stringify({ 
           completed: true,
-          // title: "Something New" // Can also change title, BUT probably better in a different request.
         }),
       })
         .then( response => response.json())
@@ -73,27 +68,23 @@
     }
 
     function del(id){
-
       fetch("http://localhost:3000/todo/"+id, {
         method: "DELETE",
       })
         .then( response => console.log('response:',response))
         .catch( err => console.log("oops, looks like we got an error: ", err))
-
     }
 
 
     // ✨ BONUS GET Individual by id
 
     function getId(id){
-
       fetch("http://localhost:3000/todo/"+id, {
         method: "GET",
       })
       .then( response => response.json())
         .then( data => console.log("data:", data))
         .catch( err => console.log("oops, looks like we got an error: ", err))
-
     }
 
 
