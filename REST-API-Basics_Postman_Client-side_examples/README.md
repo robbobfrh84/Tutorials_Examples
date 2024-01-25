@@ -3,5 +3,5 @@
   - But `post` and `put` have bodies and will be needed with **Postman**. 
 
 ### Start
-`npm install express body-parser` ! May error first time if no package.json
+`npm install express body-parser cors` ! May error first time if no package.json
 `node server.js`
