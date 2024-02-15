@@ -1,0 +1,15 @@
+{
+  "name": "your-app",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^28.2.2"
+  },
+  "description": "This post is a example of three.js game as native application. The idea came from [@Nazariglez](https://twitter.com/Nazariglez) in this [tweet](https://twitter.com/Nazariglez/status/591915046151815169), a nice guy, be sure to check it out! I loved the idea and tried to reproduce it. You can use that to easily write 3d games with ease of three.js coding and still have the same controls you can get with a native application.",
+  "author": "",
+  "license": "ISC"
+}

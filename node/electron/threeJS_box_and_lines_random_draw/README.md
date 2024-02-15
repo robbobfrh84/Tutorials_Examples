@@ -1,4 +1,7 @@
 # 3D Box
+- `npm init` > tab through defaults
+- `npm install`
+- `npm start`
 
 WARNING: USE the specific `ui/lib/three.min.js` code, NOT what you find online. I don't know why. i got this from somebody elses example that work when all others gave me this odd "function not found" in three.js error.
 

@@ -1,7 +1,7 @@
 {
-  "name": "electron_read_write_files",
+  "name": "electron-quick-start",
   "version": "1.0.0",
-  "description": "Setting Up",
+  "description": "Guide",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "electron-prebuilt": "^1.4.13"
+  "devDependencies": {
+    "electron": "^28.2.2"
   }
 }
