@@ -1,0 +1,14 @@
+body {
+  background-color: #CCC;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  border: 1px solid #777;
+  padding: 3px 5px;
+}
+.textBox {
+  padding: 5px;
+  width: 100%;
+}

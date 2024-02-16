@@ -12,11 +12,25 @@ async function readFile(event, fileName) {
   } catch(error) { return { error } }
 }
 
-async function updateFile(event, fileName) {
-  console.log('TO DO!updateFile')
+async function updateFile(event, fileName, content) {
+  console.log('fileName,content:',fileName,content)
+
+  // const fileContents = await fs.promises.updateFile('./files/'+fileName, 'utf8')
+
+  console.log('TO DO! updateFile')
 }
 
-async function deleteFile(event, fileName) {
+// Maybe?????
+// function writeFile(filename, name, number) {
+//   if (!fs.existsSync(filename)) {
+//     fs.writeFile(filename, '', (err) => {
+//        if (err) { console.log(err) }
+//     })
+//   }
+//   return fs.appendFileSync(filename, name + ',' + number + '\n')
+// }
+
+async function deleteFile(event, fileName, content) {
   console.log('TO DO! deleteFile')
 }
 

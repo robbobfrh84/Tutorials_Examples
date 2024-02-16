@@ -10,19 +10,19 @@ const {
   updateFile, 
   deleteFile,
   readFileDialog 
-} = require('./controller/crud_file.controller.js')
+} = require('./js/crud_file.js')
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 737,
     height: 850,
-    x: 30,
+    x: 100,
     y: 0,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  mainWindow.loadFile('view/index.html')
+  mainWindow.loadFile('client/index.html')
 }
 
 app.whenReady().then(() => {

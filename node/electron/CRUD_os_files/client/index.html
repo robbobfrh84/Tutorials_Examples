@@ -10,17 +10,25 @@
 
 <body>
     <h3> Electron example: Creating, Reading, Updating and Deleting mac os files </h3>
-    <p id="ticker"></p>
+    <em>NOTE:</em> This examples uses .csv to visualize an example. But any fileType will work just fine.
+    <br><br>
 
+    <button id="createFile_btn"> Create File </button> 
+    <input id="createFile_value" value="file2.csv">
+    <br>
     <button id="readFile_btn"> Read File </button> 
-    <input id="readFile_value", value="file1.csv">
-
-    <hr>
+    <input id="readFile_value" value="file1.csv">
+    <br>
     <button id="readFileDiolage_btn"> Read File from OS Dialog </button> 
 
-
+    <hr>
+    FileName: <strong id="openedFileName"></strong>
+    <br><br>
+    <div id="fileContent"></div>
 </body>
 
+<script src="onload.js"></script>
 <script src="events.js"></script>
+<script src="updates.js"></script>
 
 </html>
