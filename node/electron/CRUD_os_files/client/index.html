@@ -13,13 +13,22 @@
     <em>NOTE:</em> This examples uses .csv to visualize an example. But any fileType will work just fine.
     <br><br>
 
-    <button id="createFile_btn"> Create File </button> 
-    <input id="createFile_value" value="file2.csv">
+    <button onclick="createFile()"> Create File </button> 
+    <input id="createFile_value" value="file3.csv">
     <br>
-    <button id="readFile_btn"> Read File </button> 
+    <button onclick="readFile()"> Read File </button>
     <input id="readFile_value" value="file1.csv">
     <br>
-    <button id="readFileDiolage_btn"> Read File from OS Dialog </button> 
+    <button onclick="deleteFile()"> Delete File </button> 
+    <input id="deleteFile_value" value="file4.csv">
+    <hr>
+    ⭐️ Extra File System Operations 
+    <br> <br>
+    <button onclick="readFileDialog()"> Read File from OS Dialog </button> 
+    
+    <br>
+    <button onclick="readFiles()"> Read Files </button> 
+    <div id="filesList"></div>
 
     <hr>
     FileName: <strong id="openedFileName"></strong>

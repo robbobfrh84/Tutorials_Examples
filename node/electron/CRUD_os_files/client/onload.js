@@ -1,9 +1,3 @@
-// const STATE = {
-//   currentFileName = ""
-//   fileObj = {}
-// }
-
-// window.onload = () => {
-//   console.log('onload')
-// }
-
+window.onload = ()=>{
+  readFiles()
+}

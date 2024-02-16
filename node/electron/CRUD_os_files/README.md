@@ -15,6 +15,10 @@ Hot reload
 - Just need to add the following to `main.js`
 
 ```
-const electronReload = require('electron-reload');
-electronReload(__dirname);
+const electronReload = require('electron-reload')
+electronReload(__dirname) // This will only reload UI if you want. 
+require('electron-reload')(__dirname, { // This reloads both. 
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+  forceHardReset: true
+}) 
 ```
