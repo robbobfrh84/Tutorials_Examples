@@ -1,4 +1,4 @@
-name,number
-Bob,39
-Sally,50
-file,1
+name,number,fun
+Bob,39,yes
+Sally,50,yes
+file,1,no

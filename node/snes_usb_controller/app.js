@@ -32,21 +32,21 @@ function getButton(dir,num) {
     case 4: button = "L"; break;
     case 5: button = "R"; break;
 
-    // // MAC Directionals
-    // case "3:-1": button = "DL"; dir = "down"; break;
-    // case "3:1": button = "DR"; dir = "down"; break;
-    // case "3:0": button = "DLR"; dir = "up"; break;
-    // case "4:-1": button = "DU"; dir = "down"; break;
-    // case "4:1": button = "DD"; dir = "down"; break;
-    // case "4:0": button = "DUD"; dir = "up"; break;
+    // MAC Directionals
+    case "3:-1": button = "DL"; dir = "down"; break;
+    case "3:1": button = "DR"; dir = "down"; break;
+    case "3:0": button = "DLR"; dir = "up"; break;
+    case "4:-1": button = "DU"; dir = "down"; break;
+    case "4:1": button = "DD"; dir = "down"; break;
+    case "4:0": button = "DUD"; dir = "up"; break;
 
-    // Raspberry Pi Directionals
-    case "0:-1": button = "DL"; dir = "down"; break;
-    case "0:1": button = "DR"; dir = "down"; break;
-    case "0:0": button = "DLR"; dir = "up"; break;
-    case "1:-1": button = "DU"; dir = "down"; break;
-    case "1:1": button = "DD"; dir = "down"; break;
-    case "1:0": button = "DUD"; dir = "up"; break;
+    // // Raspberry Pi Directionals
+    // case "0:-1": button = "DL"; dir = "down"; break;
+    // case "0:1": button = "DR"; dir = "down"; break;
+    // case "0:0": button = "DLR"; dir = "up"; break;
+    // case "1:-1": button = "DU"; dir = "down"; break;
+    // case "1:1": button = "DD"; dir = "down"; break;
+    // case "1:0": button = "DUD"; dir = "up"; break;
   }
   console.log(button+":"+dir+':'+num+".")
 }
