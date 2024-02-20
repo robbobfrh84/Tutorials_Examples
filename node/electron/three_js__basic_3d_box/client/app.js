@@ -1,19 +1,17 @@
 import * as THREE from 'three';
 
-import { OrbitControls } from './three/addons/OrbitControls.js';
-import { ConvexGeometry } from './three/addons/ConvexGeometry.js';
-import * as BufferGeometryUtils from './three/addons/BufferGeometryUtils.js';
+import { OrbitControls } from './three_lib/addons/OrbitControls.js';
+import { ConvexGeometry } from './three_lib/addons/ConvexGeometry.js';
+import * as BufferGeometryUtils from './three_lib/addons/BufferGeometryUtils.js';
 
 let group, camera, scene, renderer;
+let pause = false
 
 init();
-// setTimeout(render,50) // SWAP NOTE OUT WITH ANIMATE TO show as still...
 animate();
 
 function init() {
-
   scene = new THREE.Scene();
-
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -23,7 +21,6 @@ function init() {
   camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.set( 15, -20, 30 );
   camera.up.set( 0, 0, 1 );
-
   scene.add( camera );
 
   // controls
@@ -44,7 +41,7 @@ function init() {
 
   // textures
   const loader = new THREE.TextureLoader();
-  const texture = loader.load( './three/disc.png' );
+  const texture = loader.load( './three_lib/disc.png' );
   texture.colorSpace = THREE.SRGBColorSpace;
 
   group = new THREE.Group();
@@ -61,11 +58,9 @@ function init() {
 
   const vertices = [];
   const positionAttribute = dodecahedronGeometry.getAttribute( 'position' );
-  console.log('positionAttribute:',positionAttribute)
 
   for ( let i = 0; i < positionAttribute.count; i ++ ) {
     const vertex = new THREE.Vector3();
-    console.log('positionAttribute:',positionAttribute)
     vertex.fromBufferAttribute( positionAttribute, i );
     vertices.push( vertex );
   }
@@ -132,11 +127,16 @@ function onWindowResize() {
 function animate() {
   requestAnimationFrame( animate );
   if (!pause) {
-    group.rotation.y += 0.005;
-    render();
+    group.rotation.z -= 0.005;
   }
+  render();
 }
 
 function render() {
   renderer.render( scene, camera );
 }
+
+toggleRotate.addEventListener( 'click',()=>{
+  pause = !pause
+  group.rotation.z = 0;
+})

@@ -4,24 +4,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  <link type="text/css" rel="stylesheet" href="main.css">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
   This example was built off of the three.js Geometry convex example:  
   <a href="https://threejs.org/examples/#webgl_geometry_convex">https://threejs.org/examples/#webgl_geometry_convex</a>
+  <br><br>
+  <input id="toggleRotate" type="checkbox">
+  <label for="my-toggle">Rotate</label>
 </body>
 
 <script type="importmap">      
-  {
-    "imports": {
-      "three": "./three/three.module.js",
-      "three/addons": "./"
-    }
+{
+  "imports": {
+    "three": "./three_lib/three.module.js",
+    "three/addons": "./"
   }
-</script>
-<script>
-  var pause = false
+}
 </script>
 <script type="module" src="app.js"></script>
 

@@ -3,11 +3,9 @@ const url = require('url')
 const path = require('path')
 
 function createWindow() {
-   win = new BrowserWindow({
-     width: 800,
-     height: 900,
-     x: 50,
-     y: 0
+   win = new BrowserWindow({ // mac: 2560 × 1664
+     width: 750, height: 900, 
+     x: 0, y: 0
    })
    win.loadURL(url.format ({
     pathname: path.join(__dirname, 'client/index.html'),
