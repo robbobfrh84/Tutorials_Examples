@@ -7,8 +7,7 @@ const { log } = require('console');
 const { getPromptString } = require('./prompt.js')
 
 const MODEL_NAME = "models/text-bison-001";
-// 🔥 🔥 🔥 🔥 🔥 REMOVE API KEY
-const API_KEY = "AIzaSyD7T1qI3GXs3QFex_JPpCNL_uZEvnpYums";
+const API_KEY = "API KEY HERE";
 
 const client = new TextServiceClient({
   authClient: new GoogleAuth().fromAPIKey(API_KEY),

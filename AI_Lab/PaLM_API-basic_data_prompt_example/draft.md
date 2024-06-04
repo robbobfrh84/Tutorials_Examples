@@ -6,7 +6,6 @@
 ### API Setup
 - Visit: https://makersuite.google.com/ 
 - Click: [Create an API key] button > and generate for new project...
-  - key: AIzaSyD7T1qI3GXs3QFex_JPpCNL_uZEvnpYums
 
 ### Get "Data prompt" Example
 - Back to: https://makersuite.google.com/ 
