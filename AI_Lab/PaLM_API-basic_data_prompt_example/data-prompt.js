@@ -16,7 +16,7 @@ const client = new TextServiceClient({
 if (!argument) {
   console.log('\n\n No input entered, default will be "sun".\n\n ')
 }
-const input = argument || "sun"
+const input = argument || "sun";
 
 const promptString = getPromptString(input)
 
