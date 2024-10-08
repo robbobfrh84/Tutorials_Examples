@@ -1,3 +1,5 @@
+🔔 Updated Instruction via Substack Post: https://substack.com/home/post/p-149814640?source=queue&autoPlay=false
+
 # Node.js App Engine with Google CLI: Getting Started Guide - 2023
 
 **NOTE:** This tutorial is demonstrated on a Mac OS, but the required software for other operating systems is included in the provided links. For Windows, Mac Terminal commands are similar to "$git bash."
